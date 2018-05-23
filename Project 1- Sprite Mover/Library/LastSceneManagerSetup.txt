@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/ewq.unity
-  isLoaded: 1
-  isActive: 1
