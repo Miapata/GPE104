@@ -10,6 +10,7 @@ public class DisableComponent : MonoBehaviour {
 	void Start () {
 		//Set move to the component in this gameobject
 		player = GetComponent<PlayerComponent> ();
+		Application.Quit ();
 	}
 	
 	// Update is called once per frame
