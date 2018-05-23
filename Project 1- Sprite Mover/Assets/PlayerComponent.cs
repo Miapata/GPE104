@@ -1,14 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class PlayerComponent : MonoBehaviour {
 	//Speed
 	public float speed  = 2.3f;
 	//Coin prefab
 	public GameObject coin;
-	// Update is called once per frame
+	//Text object
+	public Text text;
+
+	//score
+	public int score;
+
+
 	void Update () {
 
 		//If "Q" is pressed
@@ -95,6 +101,11 @@ public class PlayerComponent : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D other){
 		//If other collider is named Player
 		if (other.gameObject.name == "Coin") {
+			//Increase score
+			score++;
+
+			//Update score text
+			text.text=("Score:" +score);
 
 			//Set vector x,y to random range
 			Vector3 position = new Vector3 (Random.Range (-9f, 10.1f), Random.Range (-3f, 4.1f), 0);
