@@ -11,6 +11,8 @@ public class PlayerComponent : MonoBehaviour {
 	//Text object
 	public Text text;
 
+	public bool active = false;
+
 	//score
 	public int score;
 
@@ -23,75 +25,53 @@ public class PlayerComponent : MonoBehaviour {
 			gameObject.SetActive (false);
 		}
 
+
+
+		if (Input.GetKeyDown (KeyCode.LeftShift)||Input.GetKeyDown(KeyCode.RightShift)) {
+			active = true;
+		}
+		if (Input.GetKeyUp (KeyCode.LeftShift)||Input.GetKeyUp(KeyCode.RightShift)) {
+			active = false;
+		}
+
+
 		//If "space" is pressed
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			//Reset position to center
 			transform.position = new Vector3 (0, 0, 0);
 		}
 
+		if (Input.GetKeyDown (KeyCode.UpArrow)&&active==true) {
+			transform.Translate (0, 1, 0);
 
-		//If "up Arrow" is pressed
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-			//Check if "Shift" is pressed
-            if (Input.GetKey(KeyCode.LeftShift)||Input.GetKey(KeyCode.RightShift))
-            {
-				//Translate by one unit
-                transform.Translate(0, 1, 0);
-            }
-            else
-            {
-				//Smoother translate
-                transform.Translate(0, speed * Time.deltaTime, 0);
-            }
-        }
+		}
+		else if (Input.GetKey(KeyCode.UpArrow)&&active==false) {
+			transform.Translate (0, speed, 0);
+		}
 
-		//If "down arrow" is pressed
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-			//Check if Shift is pressed
-            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-            {
-				//translate one unit
-                transform.Translate(0, -1, 0);
-            }
-            else
-            {
-				//translate smoother
-                transform.Translate(0, -speed * Time.deltaTime, 0);
-            }
-        }
-		//If "right arrow" is pressed
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-			//Check if Shift is pressed
-            if (Input.GetKey(KeyCode.LeftShift)||Input.GetKey(KeyCode.RightShift))
-			{
-				//Translate by one unit
-                transform.Translate(1, 0, 0);
-            }
-            else
-			{
-				//Smoother translate
-                transform.Translate(speed * Time.deltaTime, 0, 0);
-            }
-        }
-		
-		//If left arrow is pressed
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-			//Check if Shift is pressed
-            if (Input.GetKey(KeyCode.LeftShift)||Input.GetKey(KeyCode.RightShift))
-            {
-				//Translate by one unit
-                transform.Translate(-1 , 0, 0);
-            }
-            else
-            {
-				//Smoother translate
-                transform.Translate(-speed * Time.deltaTime, 0, 0);
-            }
-        }
+		if (Input.GetKeyDown (KeyCode.LeftArrow)&&active==true) {
+			transform.Translate (-1,0 , 0);
+
+		}
+		else if (Input.GetKey(KeyCode.LeftArrow)&&active==false) {
+			transform.Translate (-speed,0,  0);
+		}
+
+		if (Input.GetKeyDown (KeyCode.DownArrow)&&active==true) {
+			transform.Translate (0,-1,  0);
+
+		}
+		else if (Input.GetKey(KeyCode.DownArrow)&&active==false) {
+			transform.Translate (0,-speed,  0);
+		}
+
+		if (Input.GetKeyDown (KeyCode.RightArrow)&&active==true) {
+			transform.Translate (1,0 , 0);
+
+		}
+		else if (Input.GetKey(KeyCode.RightArrow)&&active==false) {
+			transform.Translate (speed,0 , 0);
+		}
 
 
 
