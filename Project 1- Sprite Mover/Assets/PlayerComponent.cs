@@ -11,6 +11,7 @@ public class PlayerComponent : MonoBehaviour {
 	//Text object
 	public Text text;
 
+	//bool for shift
 	public bool active = false;
 
 	//score
@@ -26,11 +27,15 @@ public class PlayerComponent : MonoBehaviour {
 		}
 
 
-
+		//If shift is down
 		if (Input.GetKeyDown (KeyCode.LeftShift)||Input.GetKeyDown(KeyCode.RightShift)) {
+			//set active to true
 			active = true;
 		}
+
+		//If shift is up
 		if (Input.GetKeyUp (KeyCode.LeftShift)||Input.GetKeyUp(KeyCode.RightShift)) {
+			//set active to false
 			active = false;
 		}
 
@@ -41,35 +46,48 @@ public class PlayerComponent : MonoBehaviour {
 			transform.position = new Vector3 (0, 0, 0);
 		}
 
-		if (Input.GetKeyDown (KeyCode.UpArrow)&&active==true) {
+		//If up arrow is down and shift is down
+		if (Input.GetKeyDown (KeyCode.UpArrow) && active == true) {
+			//Translate one unit
 			transform.Translate (0, 1, 0);
 
 		}
-		else if (Input.GetKey(KeyCode.UpArrow)&&active==false) {
-			transform.Translate (0, speed, 0);
+		//Input up arrow is down and active is false
+		else if (Input.GetKey (KeyCode.UpArrow) && active == false) {
+			//translate by speed
+			transform.Translate (0,	speed, 0);
 		}
-
+		//If left arrow is down and shift is down
 		if (Input.GetKeyDown (KeyCode.LeftArrow)&&active==true) {
+			//Translate one unit
 			transform.Translate (-1,0 , 0);
 
 		}
+		//If left arrow is down and active is false
 		else if (Input.GetKey(KeyCode.LeftArrow)&&active==false) {
+			//translate by speed
 			transform.Translate (-speed,0,  0);
 		}
 
+		//If down arrow is down and shift is down
 		if (Input.GetKeyDown (KeyCode.DownArrow)&&active==true) {
 			transform.Translate (0,-1,  0);
 
 		}
+		//If down arrow is down and active is false
 		else if (Input.GetKey(KeyCode.DownArrow)&&active==false) {
+			//translate by speed
 			transform.Translate (0,-speed,  0);
 		}
-
+		//If right arrow is down and shift is down
 		if (Input.GetKeyDown (KeyCode.RightArrow)&&active==true) {
+			//translate by one unit
 			transform.Translate (1,0 , 0);
 
 		}
+		//If up arrow is right and active is false
 		else if (Input.GetKey(KeyCode.RightArrow)&&active==false) {
+			//translate by speed
 			transform.Translate (speed,0 , 0);
 		}
 
