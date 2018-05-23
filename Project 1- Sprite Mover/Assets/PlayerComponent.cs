@@ -4,17 +4,12 @@ using UnityEngine;
 
 
 public class PlayerComponent : MonoBehaviour {
+	//Speed
 	public float speed  = 2.3f;
+	//Coin prefab
 	public GameObject coin;
 	// Update is called once per frame
 	void Update () {
-
-		//If escape key is pressed
-		if (Input.GetKeyDown(KeyCode.Escape)) {
-			Application.Quit();
-		}
-
-
 
 		//If "Q" is pressed
 		if(Input.GetKeyDown(KeyCode.Q)){
@@ -96,6 +91,7 @@ public class PlayerComponent : MonoBehaviour {
 
     }
 
+	//Method for detecting collisions
 	void OnCollisionEnter2D(Collision2D other){
 		//If other collider is named Player
 		if (other.gameObject.name == "Coin") {

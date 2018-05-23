@@ -20,11 +20,13 @@ public class DisableComponent : MonoBehaviour {
 			if (active) {
 				//disable it
 				player.enabled = false;
+				//Active to false
 				active = false;
 
 			} else {
 				//enable it
 		player.enabled = true;
+				//Set active to true
 				active = true;
 			}
 
