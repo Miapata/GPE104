@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class DisableComponent : MonoBehaviour {
 
-	public MoveComponent move;
+	public PlayerComponent player;
 	public bool active=true;
 	// Use this for initialization
 	void Start () {
 		//Set move to the component in this gameobject
-		move = GetComponent<MoveComponent> ();
+		player = GetComponent<PlayerComponent> ();
 	}
 	
 	// Update is called once per frame
@@ -19,12 +19,12 @@ public class DisableComponent : MonoBehaviour {
 			//Check if it's active
 			if (active) {
 				//disable it
-				move.enabled = false;
+				player.enabled = false;
 				active = false;
 
 			} else {
 				//enable it
-		move.enabled = true;
+		player.enabled = true;
 				active = true;
 			}
 
