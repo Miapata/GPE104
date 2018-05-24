@@ -85,7 +85,7 @@ public class PlayerComponent : MonoBehaviour {
 			transform.Translate (1,0 , 0);
 
 		}
-		//If up arrow is right and active is false
+		//If up arrow is down and active is false
 		else if (Input.GetKey(KeyCode.RightArrow)&&active==false) {
 			//translate by speed
 			transform.Translate (speed,0 , 0);
@@ -97,7 +97,7 @@ public class PlayerComponent : MonoBehaviour {
 
 	//Method for detecting collisions
 	void OnCollisionEnter2D(Collision2D other){
-		//If other collider is named Player
+		//If other collider is named Coin
 		if (other.gameObject.name == "Coin") {
 			//Increase score
 			score++;
