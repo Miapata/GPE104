@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DisableComponent : MonoBehaviour {
-
+	//Public script
 	public PlayerComponent player;
+	//bool
 	public bool active=true;
 	// Use this for initialization
 	void Start () {

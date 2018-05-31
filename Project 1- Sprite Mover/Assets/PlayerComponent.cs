@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 public class PlayerComponent : MonoBehaviour {
-	//Speed
+	//Speed variable
 	public float speed  = 2.3f;
 	//Coin prefab
 	public GameObject coin;
@@ -93,15 +93,18 @@ public class PlayerComponent : MonoBehaviour {
 
 	//Method for detecting collisions
 	void OnCollisionEnter2D(Collision2D other){
-		//If other collider is named Player
+		//If other collider is named Coin
 		if (other.gameObject.name == "Coin") {
 
-			//Set vector x,y to random range
+			//Create a new vector, Set x,y to random range
 			Vector3 position = new Vector3 (Random.Range (-9f, 10.1f), Random.Range (-3f, 4.1f), 0);
-			//Spawn coin
-			Instantiate (coin, position, Quaternion.identity);
+
 			//Destroy current coin
 			Destroy (other.gameObject);
+
+			//Spawn coin
+			Instantiate (coin, position, Quaternion.identity);
+
 		}
 
 	}
