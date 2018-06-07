@@ -3,20 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Explosion : MonoBehaviour {
+
+	//Gameobjects
 	public GameObject missle,player,spawnRing;
-	public Transform center;
+
+	//Animator
 	public Animator anim;
 	// Use this for initialization
 	void Start () {
+		//Destroy the gameobject after 1 second
 		Destroy (gameObject, 1);	
 	}
 
 	void Update(){
         //If the ring animation is finished
 		if (anim.GetCurrentAnimatorStateInfo (0).normalizedTime >= 1) {
-			//Spanw missle
+			
+			//Spawn missle
 			GameObject newMissle= Instantiate(missle,transform.position,Quaternion.identity);
-		    //Multiply the worldspace by the quaternion    Vector right *rotation
+		    
             //Declare rigidbody2d
 			Rigidbody2D rigidBody = newMissle.GetComponent<Rigidbody2D> ();
 
@@ -28,6 +33,7 @@ public class Explosion : MonoBehaviour {
 
             //radians
 			var radian = Mathf.Atan2 (dir.y, dir.x);
+
             //Covert radians to degrees
 			float degress = radian * Mathf.Rad2Deg;
 
@@ -40,7 +46,7 @@ public class Explosion : MonoBehaviour {
             //normalize it
 			var vel = direction.normalized;
 
-
+			//Set the velocity
 			rigidBody.velocity = vel*4;
             
             
