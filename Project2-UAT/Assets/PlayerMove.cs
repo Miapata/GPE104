@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour {
+public class PlayerMove : MonoBehaviour {
     Rigidbody2D rb;
-    public float rotateSpeed, movementSpeed;
+    public GameObject laser,center;
+    public float rotateSpeed, movementSpeed,laserSpeed;
 	// Use this for initialization
-	void Start() { 
-
+	void Start() {
+        
 	}
 	
 	// Update is called once per frame
@@ -26,6 +27,18 @@ public class NewBehaviourScript : MonoBehaviour {
         if (Input.GetKey(KeyCode.DownArrow))
         {
             transform.Translate(0, -movementSpeed * Time.deltaTime, 0);
+ 
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+
+            
+           var laserInstance= Instantiate(laser,center.transform.position,transform.rotation);
+            
+            rb= laserInstance.GetComponent<Rigidbody2D>();
+            rb.velocity = transform.up*laserSpeed;
+            
         }
 
     }
