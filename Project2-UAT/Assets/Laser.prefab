@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 70563665295386684}
   - component: {fileID: 114597441925762760}
   m_Layer: 0
-  m_Name: laserBlue02
+  m_Name: Laser
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75c6d897c86e91c4d815400da325ee87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 0
+  time: 3
 --- !u!212 &212305076093017208
 SpriteRenderer:
   m_ObjectHideFlags: 1
