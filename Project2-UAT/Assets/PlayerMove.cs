@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour {
+    public Spawn spawn;
     Rigidbody2D rb;
-    public GameObject laser,center;
+    public GameObject laser,center,explosion;
     public float rotateSpeed, movementSpeed,laserSpeed;
 	// Use this for initialization
 	void Start() {
-        
+        spawn = GameObject.FindGameObjectWithTag("Respawn").GetComponent<Spawn>();
 	}
 	
 	// Update is called once per frame
@@ -42,4 +43,15 @@ public class PlayerMove : MonoBehaviour {
         }
 
     }
+
+     void OnCollisionEnter2D(Collision2D collision)
+    {
+        Instantiate(explosion,transform.position,Quaternion.identity);
+            foreach (GameObject enemy in spawn.enemyList)
+            {
+                spawn.enemyList.Remove(enemy);
+                Destroy(enemy);
+            }
+        }
+    
 }

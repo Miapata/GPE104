@@ -8,5 +8,9 @@ public class Laser : MonoBehaviour {
 	void Start () {
         Destroy(gameObject, time);
 	}
+     void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(collision.gameObject);
+    }
 
 }
