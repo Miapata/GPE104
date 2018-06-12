@@ -56,6 +56,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 426390}
+  - component: {fileID: 114597058779900856}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -387,3 +388,14 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 139366}
   m_IsPrefabParent: 1
+--- !u!114 &114597058779900856
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d428b9fb9ea76e74dad4fc3eb1f3fe1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
