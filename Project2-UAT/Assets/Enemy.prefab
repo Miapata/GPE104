@@ -107,7 +107,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   player: {fileID: 1624703362008224, guid: a990852b03b091443bf2145219f51336, type: 2}
-  forceSpeed: 0.24
+  forceSpeed: 2.4
+  rotatingSpeed: 235.6
 --- !u!212 &212950138002616702
 SpriteRenderer:
   m_ObjectHideFlags: 1

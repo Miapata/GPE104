@@ -6,6 +6,8 @@ public class ExplosionScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+        //After two seconds, destroy
         Destroy(gameObject, 2);
 	}
 	
