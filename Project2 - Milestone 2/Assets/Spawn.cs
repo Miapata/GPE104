@@ -12,6 +12,9 @@ public class Spawn : MonoBehaviour {
 	//Transform
 	public Transform center;
 
+    //Vector2
+    public Vector2 centerVec;
+
 	//Bool for spawning
 	bool spawn;
 
@@ -51,8 +54,8 @@ public class Spawn : MonoBehaviour {
 		//wait for a random time
 		yield return new WaitForSeconds (time);
 
-		//spawn in a random radius
-		Vector3 spawnPosition = Random.onUnitSphere * (5+5 * 0.5f) + center.position;
+        //spawn in a random radius
+        Vector3 spawnPosition = Random.insideUnitCircle * (5 + 5 * 0.5f) + centerVec;
 
 		//Instantiate the ring
 		Instantiate (spawnRing,spawnPosition,Quaternion.identity);

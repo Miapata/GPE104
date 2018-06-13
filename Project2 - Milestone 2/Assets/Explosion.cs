@@ -25,8 +25,8 @@ public class Explosion : MonoBehaviour {
             //Declare rigidbody2d
 			Rigidbody2D rigidBody = newMissle.GetComponent<Rigidbody2D> ();
 
-            //set z transform
-			newMissle.transform.position = new Vector3 (newMissle.transform.position.x, newMissle.transform.position.y, 0);
+            
+			
 
             //get a vector direction
 			var dir = player.transform.position - newMissle.transform.position;
