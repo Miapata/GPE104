@@ -37,8 +37,7 @@ public class Spawn : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        lives = GameManager.instance.lives;
-        chance= GameManager.instance.chance;
+        
     }
 
     // Update is called once per frame
@@ -94,7 +93,7 @@ public class Spawn : MonoBehaviour
         yield return new WaitForSeconds(Random.Range(timeA, timeB));
 
         //Chance for enemy ship to spawn
-        if (Random.value < chance)
+        if (Random.value < GameManager.instance.chance)
         {
             //Instantiate the ship a random spawn point
             enemyList.Add(Instantiate(enemyShip, spawns[Random.Range(0, spawns.Count)].transform.position, Quaternion.identity));

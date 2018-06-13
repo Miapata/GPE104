@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PlayerMove : MonoBehaviour {
     public GameManager manager;
-    public Spawn spawn;
+   
     Rigidbody2D rb;
     public Text text;
     public GameObject laser, center, explosion,directionSprite;
@@ -12,11 +12,9 @@ public class PlayerMove : MonoBehaviour {
      int lives;
 	// Use this for initialization
 	void Start() {
-        player_RotateSpeed = GameManager.instance.player_player_RotateSpeed;
-        player_MoveSpeed = GameManager.instance.player_MoveSpeed;
-        laserSpeed = GameManager.instance.laserSpeed;
+        
         spawn = GameObject.FindGameObjectWithTag("Respawn").GetComponent<Spawn>();
-        lives = GameManager.instance.lives;
+       
         text = GameObject.FindGameObjectWithTag("Text").GetComponent<Text>();
         text.text = "Lives: " + lives.ToString();
     }
@@ -31,22 +29,22 @@ public class PlayerMove : MonoBehaviour {
         
 
         if (Input.GetKey(KeyCode.LeftArrow)){
-            transform.Rotate(0, 0,player_RotateSpeed*Time.deltaTime);
+            transform.Rotate(0, 0,GameManager.instance.player_RotateSpeed*Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Rotate(0, 0, -player_RotateSpeed * Time.deltaTime);
+            transform.Rotate(0, 0, -GameManager.instance.player_RotateSpeed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            transform.Translate(0, player_MoveSpeed * Time.deltaTime, 0);
+            transform.Translate(0, GameManager.instance.player_MoveSpeed * Time.deltaTime, 0);
         }
 
         //If down arrow is pressed
         if (Input.GetKey(KeyCode.DownArrow))
         {
             //Translate
-            transform.Translate(0, -player_MoveSpeed * Time.deltaTime, 0);
+            transform.Translate(0, -GameManager.instance.player_MoveSpeed * Time.deltaTime, 0);
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -78,10 +76,10 @@ public class PlayerMove : MonoBehaviour {
 
      void OnCollisionEnter2D(Collision2D collision)
     {
-      
 
-        lives--;
-        if (lives == 0)
+
+        GameManager.instance.lives--;
+        if (GameManager.instance.lives == 0)
         {
             Application.Quit();
         }

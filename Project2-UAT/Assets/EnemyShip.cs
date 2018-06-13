@@ -9,13 +9,11 @@ public class EnemyShip : MonoBehaviour {
     //Player
     public GameObject player;
 
-    //Floats
-    float enemy_Speed, enemy_player_RotateSpeed;
+  
 	// Use this for initialization
 	void Start () {
 
-        enemy_Speed = GameManager.instance.enemy_Speed;
-        enemy_player_RotateSpeed=GameManager.instance.enemy_player_RotateSpeed;
+        
 
         //Gind the rigidbody
         rb = GetComponent < Rigidbody2D > ();
@@ -40,14 +38,14 @@ public class EnemyShip : MonoBehaviour {
         if (value > 0)
         {
             //set angular velocity
-            rb.angularVelocity = enemy_player_RotateSpeed;
+            rb.angularVelocity = GameManager.instance.enemy_RotateSpeed;
         }
 
         //Else if value is less than 0
         else if (value < 0)
 
             //Set angular
-            rb.angularVelocity = -enemy_player_RotateSpeed;
+            rb.angularVelocity = -GameManager.instance.enemy_RotateSpeed;
         //Else
 
         else
@@ -56,10 +54,10 @@ public class EnemyShip : MonoBehaviour {
             rb.angularVelocity = 0;
 
         //Set velocity to rotating speed and value
-        rb.angularVelocity = enemy_player_RotateSpeed * value;
+        rb.angularVelocity = GameManager.instance.enemy_RotateSpeed * value;
 
         //Velocity is transform up times the forceSpeed
-        rb.velocity = transform.up * enemy_Speed;
+        rb.velocity = transform.up * GameManager.instance.enemy_Speed;
 
 
 

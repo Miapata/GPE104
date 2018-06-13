@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour {
     public int lives;
     
     //Floats
-    public float chance, enemy_player_RotateSpeed, player_MoveSpeed, laserSpeed,player_player_RotateSpeed,time,enemy_Speed;
+    public float chance, enemy_RotateSpeed, player_MoveSpeed, laserSpeed,player_RotateSpeed,time,enemy_Speed;
     void Awake()
     {
         // As long as there is not an instance already set
