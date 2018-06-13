@@ -9,47 +9,47 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1088230430566964}
+  m_RootGameObject: {fileID: 1228218969881282}
   m_IsPrefabParent: 1
---- !u!1 &1088230430566964
+--- !u!1 &1228218969881282
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4029689847822144}
-  - component: {fileID: 212858132054753238}
-  - component: {fileID: 50446942744092032}
-  - component: {fileID: 60754748334389272}
-  - component: {fileID: 114378163909820494}
-  m_Layer: 9
-  m_Name: Meteor
+  - component: {fileID: 4623946868854436}
+  - component: {fileID: 212064631872722272}
+  - component: {fileID: 50608268696188310}
+  - component: {fileID: 60149201905016228}
+  - component: {fileID: 114806668834693344}
+  m_Layer: 0
+  m_Name: Meteor1
   m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4029689847822144
+--- !u!4 &4623946868854436
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1088230430566964}
+  m_GameObject: {fileID: 1228218969881282}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.48, y: 1.41, z: 0}
+  m_LocalPosition: {x: -9.828319, y: 2.812449, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50446942744092032
+--- !u!50 &50608268696188310
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1088230430566964}
+  m_GameObject: {fileID: 1228218969881282}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -63,12 +63,12 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!60 &60754748334389272
+--- !u!60 &60149201905016228
 PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1088230430566964}
+  m_GameObject: {fileID: 1228218969881282}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -87,32 +87,32 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.20474267, y: -0.41231596}
-      - {x: -0.27768993, y: -0.32772398}
-      - {x: -0.44195127, y: -0.14261699}
-      - {x: -0.44087887, y: 0.19841254}
-      - {x: -0.116184235, y: 0.39853024}
-      - {x: 0.29924774, y: 0.27137363}
-      - {x: 0.42323828, y: -0.013475776}
---- !u!114 &114378163909820494
+    - - {x: 0.2978201, y: 0.27452326}
+      - {x: -0.106770515, y: 0.39541388}
+      - {x: -0.4359293, y: 0.18265009}
+      - {x: -0.42470837, y: -0.116405964}
+      - {x: -0.28187466, y: -0.3372066}
+      - {x: 0.19077301, y: -0.41032052}
+      - {x: 0.44115162, y: -0.018721104}
+--- !u!114 &114806668834693344
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1088230430566964}
+  m_GameObject: {fileID: 1228218969881282}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e983e34339d4b37478be1caa16355f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1624703362008224, guid: a990852b03b091443bf2145219f51336, type: 2}
+  player: {fileID: 0}
   rb: {fileID: 0}
---- !u!212 &212858132054753238
+--- !u!212 &212064631872722272
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1088230430566964}
+  m_GameObject: {fileID: 1228218969881282}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -142,7 +142,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b172d940e20d37c4c98a3fb2053ed5a5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6e6c90d5000eef14798e85ca3770cd18, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

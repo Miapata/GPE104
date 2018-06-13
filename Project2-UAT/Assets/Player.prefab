@@ -117,11 +117,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 0}
+  text: {fileID: 0}
   laser: {fileID: 1963188821814914, guid: b137b492632d2294db80504aa25783c8, type: 2}
   center: {fileID: 1209638814424258}
+  explosion: {fileID: 0}
   rotateSpeed: 87.59
   movementSpeed: 5
   laserSpeed: 4.59
+  lives: 0
 --- !u!198 &198228447423805654
 ParticleSystem:
   m_ObjectHideFlags: 1

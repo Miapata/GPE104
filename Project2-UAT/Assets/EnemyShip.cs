@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyShip : MonoBehaviour {
     public Rigidbody2D rb;
     public GameObject player;
+   
     public float forceSpeed;
 	// Use this for initialization
 	void Start () {
