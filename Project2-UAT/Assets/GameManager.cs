@@ -11,6 +11,16 @@ public class GameManager : MonoBehaviour {
     
     //Floats
     public float chance, enemy_RotateSpeed, player_MoveSpeed, laserSpeed,player_RotateSpeed,time,enemy_Speed;
+
+	//List for enemies
+	public List<GameObject> enemyList;
+
+	//List for spawns
+	public List<GameObject> spawns;
+
+	//Array for meteors
+	public GameObject[] meteors;
+
     void Awake()
     {
         // As long as there is not an instance already set

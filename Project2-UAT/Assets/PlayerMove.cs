@@ -12,11 +12,9 @@ public class PlayerMove : MonoBehaviour {
      int lives;
 	// Use this for initialization
 	void Start() {
-        
-        spawn = GameObject.FindGameObjectWithTag("Respawn").GetComponent<Spawn>();
        
         text = GameObject.FindGameObjectWithTag("Text").GetComponent<Text>();
-        text.text = "Lives: " + lives.ToString();
+		text.text = "Lives: " + GameManager.instance.lives.ToString();
     }
 	
 	// Update is called once per frame
@@ -25,7 +23,6 @@ public class PlayerMove : MonoBehaviour {
         Vector3 mousePositionVector3 = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1);
         mousePositionVector3 = Camera.main.ScreenToWorldPoint(mousePositionVector3);
         Vector3 targetdir = mousePositionVector3 - transform.position;
-
         
 
         if (Input.GetKey(KeyCode.LeftArrow)){
@@ -53,7 +50,7 @@ public class PlayerMove : MonoBehaviour {
             GameObject newLaser = Instantiate(laser, transform.position, transform.rotation) as GameObject;
             Rigidbody2D rigid = newLaser.GetComponent<Rigidbody2D>();
             newLaser.transform.rotation = Quaternion.LookRotation(Vector3.forward, targetdir);
-            rigid.velocity = newLaser.transform.up * laserSpeed;
+			rigid.velocity = newLaser.transform.up * GameManager.instance.laserSpeed;
             
         }
 
@@ -68,7 +65,7 @@ public class PlayerMove : MonoBehaviour {
             rb= laserInstance.GetComponent<Rigidbody2D>();
 
             //Set rigidbody's velocity to go in direction the player is facing
-            rb.velocity = transform.up*laserSpeed;
+			rb.velocity = transform.up*GameManager.instance.laserSpeed;
             
         }
    
@@ -83,15 +80,16 @@ public class PlayerMove : MonoBehaviour {
         {
             Application.Quit();
         }
-        text.text = "Lives: " + lives.ToString();
+		text.text = "Lives: " + GameManager.instance.lives.ToString();
         Instantiate(explosion,transform.position,Quaternion.identity);
-            foreach (GameObject enemy in spawn.enemyList)
+            foreach (GameObject enemy in GameManager.instance.enemyList)
             {
             Destroy(enemy);
 
             if (enemy == null)
             {
-                spawn.enemyList.Remove(enemy);
+				//Jesus
+				GameManager.instance.enemyList.Remove(enemy);
             }
                 
             }

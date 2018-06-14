@@ -13,11 +13,6 @@ public class Spawn : MonoBehaviour
     //Public gameobjects
     public GameObject meteor, enemyShip, explosion,player;
 
-    //Array for meteors
-    public GameObject[] meteors;
-
-    //player amount of lives
-    public int lives;
 
     //Public floats
     public float timeA, timeB, chance;
@@ -25,11 +20,7 @@ public class Spawn : MonoBehaviour
     //bool used for spawing
     public bool spawnIt = true;
 
-    //List for enemies
-    public List<GameObject> enemyList;
-    
-    //List for spawns
-    public List<GameObject> spawns;
+
 
     //The player script
     public PlayerMove playerScript;
@@ -45,7 +36,7 @@ public class Spawn : MonoBehaviour
     {
 
         //If i is less than enemy count
-        for (int i = enemyList.Count; i < 3; i++)
+        for (int i = GameManager.instance.enemyList.Count; i < 3; i++)
         {
             //Check if spawnIt is true
             if (spawnIt == true)
@@ -60,7 +51,7 @@ public class Spawn : MonoBehaviour
         {
 
             //For each enemy in enemy list
-            foreach (GameObject enemy in enemyList)
+			foreach (GameObject enemy in GameManager.instance.enemyList)
             {
 
                 //If enemy is no longer existing
@@ -68,7 +59,7 @@ public class Spawn : MonoBehaviour
                 {
 
                     //Remove from list
-                    enemyList.Remove(enemy);
+                    GameManager.instance.enemyList.Remove(enemy);
                 }
             }
         }
@@ -96,14 +87,14 @@ public class Spawn : MonoBehaviour
         if (Random.value < GameManager.instance.chance)
         {
             //Instantiate the ship a random spawn point
-            enemyList.Add(Instantiate(enemyShip, spawns[Random.Range(0, spawns.Count)].transform.position, Quaternion.identity));
+			GameManager.instance.enemyList.Add(Instantiate(enemyShip, GameManager.instance.spawns[Random.Range(0, GameManager.instance.spawns.Count)].transform.position, Quaternion.identity));
         }
 
         //Else if
         else
         {
             //Instantiate meteor
-            enemyList.Add(Instantiate(meteors[Random.Range(0, meteors.Length)], spawns[Random.Range(0, spawns.Count)].transform.position, Quaternion.identity));
+			GameManager.instance.enemyList.Add(Instantiate(GameManager.instance.meteors[Random.Range(0, GameManager.instance.meteors.Length)], GameManager.instance.spawns[Random.Range(0, GameManager.instance.spawns.Count)].transform.position, Quaternion.identity));
         }
 
         //Spawn is true
@@ -130,10 +121,10 @@ public class Spawn : MonoBehaviour
         {
 
             //subtract the amount of lives
-            lives--;
+			GameManager.instance.lives--;
 
             //Check if player lives is 0
-            if (lives == 0)
+			if (GameManager.instance.lives == 0)
             {
 
                 //Quit the game

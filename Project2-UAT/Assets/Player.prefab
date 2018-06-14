@@ -56,6 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4769329729821360}
   - component: {fileID: 212714975215735044}
+  - component: {fileID: 114779496037860764}
   m_Layer: 0
   m_Name: Direction
   m_TagString: Untagged
@@ -98,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1925730255786604}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.001, y: 0.697, z: 0}
+  m_LocalPosition: {x: 0.001, y: 0.568, z: 0}
   m_LocalScale: {x: 0.08996167, y: 0.08996167, z: 0.08996167}
   m_Children: []
   m_Father: {fileID: 4328129950397888}
@@ -167,15 +168,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08213b573b6c7cf458b7e64f442fa974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawn: {fileID: 0}
+  manager: {fileID: 0}
   text: {fileID: 0}
   laser: {fileID: 1963188821814914, guid: b137b492632d2294db80504aa25783c8, type: 2}
   center: {fileID: 1209638814424258}
   explosion: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 2}
-  rotateSpeed: 200
-  movementSpeed: 5.04
-  laserSpeed: 4.59
-  lives: 1
+  directionSprite: {fileID: 1925730255786604}
+--- !u!114 &114779496037860764
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1925730255786604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d115913f744644b96eadad69e05631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1624703362008224}
 --- !u!198 &198228447423805654
 ParticleSystem:
   m_ObjectHideFlags: 1
