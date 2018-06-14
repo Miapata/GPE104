@@ -7,6 +7,7 @@ public class PlayerMove : MonoBehaviour {
    
     Rigidbody2D rb;
     public Text text;
+    private Vector3 mousePosition;
     public GameObject laser, center, explosion,directionSprite;
      float player_RotateSpeed, player_MoveSpeed,laserSpeed;
      int lives;
@@ -18,55 +19,80 @@ public class PlayerMove : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
-        Vector3 mousePositionVector3 = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1);
-        mousePositionVector3 = Camera.main.ScreenToWorldPoint(mousePositionVector3);
-        Vector3 targetdir = mousePositionVector3 - transform.position;
-        
+        if (GameManager.instance.newMode)
+        {
+            mousePosition = Input.mousePosition;
+            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            transform.position = Vector2.Lerp(transform.position, mousePosition, 3);
 
-        if (Input.GetKey(KeyCode.LeftArrow)){
-            transform.Rotate(0, 0,GameManager.instance.player_RotateSpeed*Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Rotate(0, 0, -GameManager.instance.player_RotateSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            transform.Translate(0, GameManager.instance.player_MoveSpeed * Time.deltaTime, 0);
-        }
+            //If space is pressed down
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
 
-        //If down arrow is pressed
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            //Translate
-            transform.Translate(0, -GameManager.instance.player_MoveSpeed * Time.deltaTime, 0);
-        }
+                //Instantiate a laser
+                var laserInstance = Instantiate(laser, center.transform.position, transform.rotation);
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            
-            GameObject newLaser = Instantiate(laser, transform.position, transform.rotation) as GameObject;
-            Rigidbody2D rigid = newLaser.GetComponent<Rigidbody2D>();
-            newLaser.transform.rotation = Quaternion.LookRotation(Vector3.forward, targetdir);
-			rigid.velocity = newLaser.transform.up * GameManager.instance.laserSpeed;
-            
+                //get rigidbody
+                rb = laserInstance.GetComponent<Rigidbody2D>();
+
+                //Set rigidbody's velocity to go in direction the player is facing
+                rb.velocity = transform.up * GameManager.instance.laserSpeed;
+
+            }
+
         }
 
-        //If space is pressed down
-        if (Input.GetKeyDown(KeyCode.Space))
+        else
         {
+            if (Input.GetKey(KeyCode.LeftArrow)|| Input.GetKey(KeyCode.A))
+            {
+                transform.Rotate(0, 0, GameManager.instance.player_RotateSpeed * Time.deltaTime);
+            }
+            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+            {
+                transform.Rotate(0, 0, -GameManager.instance.player_RotateSpeed * Time.deltaTime);
+            }
+            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+            {
+                transform.Translate(0, GameManager.instance.player_MoveSpeed * Time.deltaTime, 0);
+            }
 
-            //Instantiate a laser
-           var laserInstance= Instantiate(laser,center.transform.position,transform.rotation);
-            
-            //get rigidbody
-            rb= laserInstance.GetComponent<Rigidbody2D>();
+            //If down arrow is pressed
+            if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+            {
+                //Translate
+                transform.Translate(0, -GameManager.instance.player_MoveSpeed * Time.deltaTime, 0);
+            }
 
-            //Set rigidbody's velocity to go in direction the player is facing
-			rb.velocity = transform.up*GameManager.instance.laserSpeed;
-            
+            if (Input.GetMouseButtonDown(0))
+            {
+                Vector3 mousePositionVector3 = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1);
+                mousePositionVector3 = Camera.main.ScreenToWorldPoint(mousePositionVector3);
+                Vector3 targetdir = mousePositionVector3 - transform.position;
+                GameObject newLaser = Instantiate(laser, transform.position, transform.rotation) as GameObject;
+                Rigidbody2D rigid = newLaser.GetComponent<Rigidbody2D>();
+                newLaser.transform.rotation = Quaternion.LookRotation(Vector3.forward, targetdir);
+                rigid.velocity = newLaser.transform.up * GameManager.instance.laserSpeed;
+
+            }
+
+
+            //If space is pressed down
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+
+                //Instantiate a laser
+                var laserInstance = Instantiate(laser, center.transform.position, transform.rotation);
+
+                //get rigidbody
+                rb = laserInstance.GetComponent<Rigidbody2D>();
+
+                //Set rigidbody's velocity to go in direction the player is facing
+                rb.velocity = transform.up * GameManager.instance.laserSpeed;
+
+            }
         }
    
     }

@@ -87,14 +87,14 @@ public class Spawn : MonoBehaviour
         if (Random.value < GameManager.instance.chance)
         {
             //Instantiate the ship a random spawn point
-			GameManager.instance.enemyList.Add(Instantiate(enemyShip, GameManager.instance.spawns[Random.Range(0, GameManager.instance.spawns.Count)].transform.position, Quaternion.identity));
+			GameManager.instance.enemyList.Add(Instantiate(enemyShip, GameManager.instance.spawns[Random.Range(0, GameManager.instance.spawns.Count)].transform.position +(Vector3) Random.insideUnitCircle * 5, Quaternion.identity));
         }
 
         //Else if
         else
         {
             //Instantiate meteor
-			GameManager.instance.enemyList.Add(Instantiate(GameManager.instance.meteors[Random.Range(0, GameManager.instance.meteors.Length)], GameManager.instance.spawns[Random.Range(0, GameManager.instance.spawns.Count)].transform.position, Quaternion.identity));
+			GameManager.instance.enemyList.Add(Instantiate(GameManager.instance.meteors[Random.Range(0, GameManager.instance.meteors.Length)], GameManager.instance.spawns[Random.Range(0, GameManager.instance.spawns.Count)].transform.position + (Vector3)Random.insideUnitCircle * 5, Quaternion.identity));
         }
 
         //Spawn is true

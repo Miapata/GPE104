@@ -32,8 +32,8 @@ public class RotateSprite : MonoBehaviour {
 		//Make a float and convert it to degrees
 		float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
-		//Rotate the sprite
-		transform.rotation = Quaternion.RotateTowards();
+        //Rotate the sprite
+        transform.rotation = Quaternion.Euler(0, 0, rotation_z - 90);
 		//Jesus
 	}
 }

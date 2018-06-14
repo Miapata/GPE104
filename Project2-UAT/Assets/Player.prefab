@@ -85,7 +85,7 @@ Transform:
   m_GameObject: {fileID: 1624703362008224}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.58, y: 0.48, z: 1}
   m_Children:
   - {fileID: 4103990464366582}
   - {fileID: 4769329729821360}
@@ -185,7 +185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d115913f744644b96eadad69e05631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1624703362008224}
+  player: {fileID: 4328129950397888}
+  length_fromObject: 1
 --- !u!198 &198228447423805654
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -1010,7 +1011,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 180.72
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1225,7 +1226,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   RotationModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -3355,7 +3356,7 @@ ParticleSystem:
     range: {x: 0, y: 1}
     separateAxes: 0
   RotationBySpeedModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
       minMaxState: 0

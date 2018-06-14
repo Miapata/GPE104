@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour {
 	//Array for meteors
 	public GameObject[] meteors;
 
+    public bool newMode;
+
     void Awake()
     {
         // As long as there is not an instance already set
