@@ -5,25 +5,15 @@ using UnityEngine;
 public class Spawn : MonoBehaviour
 {
 
-    public GameManager gameManager;
-
     //Transform center
     public Transform center;
-    
-    //Public gameobjects
-    public GameObject meteor, enemyShip, explosion,player;
 
 
     //Public floats
-    public float timeA, timeB, chance;
+	public float timeA, timeB;
 
     //bool used for spawing
     public bool spawnIt = true;
-
-
-
-    //The player script
-    public PlayerMove playerScript;
 
     // Use this for initialization
     void Start()
@@ -87,7 +77,7 @@ public class Spawn : MonoBehaviour
         if (Random.value < GameManager.instance.chance)
         {
             //Instantiate the ship a random spawn point
-			GameManager.instance.enemyList.Add(Instantiate(enemyShip, GameManager.instance.spawns[Random.Range(0, GameManager.instance.spawns.Count)].transform.position +(Vector3) Random.insideUnitCircle * 5, Quaternion.identity));
+			GameManager.instance.enemyList.Add(Instantiate(GameManager.instance.enemyShip, GameManager.instance.spawns[Random.Range(0, GameManager.instance.spawns.Count)].transform.position +(Vector3) Random.insideUnitCircle * 5, Quaternion.identity));
         }
 
         //Else if
@@ -109,7 +99,7 @@ public class Spawn : MonoBehaviour
         if (collision.tag == "Object") 
         {
             //Instantiate explosion
-            Instantiate(explosion, collision.transform.position, Quaternion.identity);
+			Instantiate(GameManager.instance.explosion, collision.transform.position, Quaternion.identity);
 
             //Destroy it
             Destroy(collision.gameObject);
@@ -132,13 +122,13 @@ public class Spawn : MonoBehaviour
             }
 
             //Instantiate the explosion
-            Instantiate(explosion, collision.transform.position, Quaternion.identity);
+			Instantiate(GameManager.instance.explosion, collision.transform.position, Quaternion.identity);
 
             //Destroy player
             Destroy(collision.gameObject);
 
             //instaniate new player
-            Instantiate(player, center);
+			Instantiate(GameManager.instance.player, center);
         }
     }
 

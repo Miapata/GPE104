@@ -3,23 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class PlayerMove : MonoBehaviour {
-    public GameManager manager;
    
     Rigidbody2D rb;
     public Text text;
     private Vector3 mousePosition;
-    public GameObject laser, center, explosion,directionSprite;
+    public GameObject  center,directionSprite;
     public bool canFire;
     public float fireRate;
 	// Use this for initialization
 	void Start() {
-       
+		if (GameManager.instance.player == null) {
+			GameManager.instance.player = gameObject;
+			DontDestroyOnLoad (gameObject);
+		} 
+		
         text = GameObject.FindGameObjectWithTag("Text").GetComponent<Text>();
 		text.text = "Lives: " + GameManager.instance.lives.ToString();
     }
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
        
 
         if (Input.GetKey(KeyCode.LeftArrow)|| Input.GetKey(KeyCode.A))
@@ -39,7 +42,9 @@ public class PlayerMove : MonoBehaviour {
             if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
             {
                 //Translate
-                transform.Translate(0, -GameManager.instance.player_MoveSpeed * Time.deltaTime, 0);
+                //Jesus Christ Jesus Christ Jesus Christ
+				
+			transform.rotation = Quaternion.FromToRotation (Vector3.up, Vector3.down);
             }
             
 
@@ -60,7 +65,7 @@ public class PlayerMove : MonoBehaviour {
             {
 
                 //Instantiate a laser
-                var laserInstance = Instantiate(laser, center.transform.position, transform.rotation);
+			var laserInstance = Instantiate(GameManager.instance.player, center.transform.position, transform.rotation);
 
                 //get rigidbody
                 rb = laserInstance.GetComponent<Rigidbody2D>();
@@ -80,7 +85,7 @@ public class PlayerMove : MonoBehaviour {
         Vector3 mousePositionVector3 = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1);
         mousePositionVector3 = Camera.main.ScreenToWorldPoint(mousePositionVector3);
         Vector3 targetdir = mousePositionVector3 - transform.position;
-        GameObject newLaser = Instantiate(laser, transform.position, transform.rotation) as GameObject;
+		GameObject newLaser = Instantiate(GameManager.instance.laser, transform.position, transform.rotation) as GameObject;
         Rigidbody2D rigid = newLaser.GetComponent<Rigidbody2D>();
         newLaser.transform.rotation = Quaternion.LookRotation(Vector3.forward, targetdir);
         rigid.velocity = newLaser.transform.up * GameManager.instance.laserSpeed;
@@ -97,7 +102,7 @@ public class PlayerMove : MonoBehaviour {
             Application.Quit();
         }
 		text.text = "Lives: " + GameManager.instance.lives.ToString();
-        Instantiate(explosion,transform.position,Quaternion.identity);
+        Instantiate(GameManager.instance.explosion,transform.position,Quaternion.identity);
             foreach (GameObject enemy in GameManager.instance.enemyList)
             {
             Destroy(enemy);

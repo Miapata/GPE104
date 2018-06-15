@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour {
 
     public bool newMode;
 
+	//All GameObjects needed
+	public GameObject explosion,player, laser,enemyShip,meteor;
+
     void Awake()
     {
         // As long as there is not an instance already set
