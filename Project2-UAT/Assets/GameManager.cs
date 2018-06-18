@@ -21,10 +21,17 @@ public class GameManager : MonoBehaviour {
 	//Array for meteors
 	public GameObject[] meteors;
 
-    public bool newMode;
+	//Colors
+	public static Color green, yellow, purple, blue;
+
+    //Array of colors
+	public Color[] colors={green,purple,yellow,blue};
 
 	//All GameObjects needed
-	public GameObject explosion,player, laser,enemyShip,meteor;
+	public GameObject explosion,player, laser,enemyShip,meteor,livesText, warningText;
+
+	//Animator
+	public Animator anim;
 
     void Awake()
     {

@@ -3,115 +3,179 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class PlayerMove : MonoBehaviour {
-   
+   	
+	//Variables
     Rigidbody2D rb;
     public Text text;
     private Vector3 mousePosition;
     public GameObject  center,directionSprite;
-    public bool canFire;
+	public bool canFire, isFlipped;
     public float fireRate;
+
 	// Use this for initialization
 	void Start() {
-		if (GameManager.instance.player == null) {
-			GameManager.instance.player = gameObject;
-			DontDestroyOnLoad (gameObject);
-		} 
-		
+
+		//Find text component
         text = GameObject.FindGameObjectWithTag("Text").GetComponent<Text>();
+
+		//set text to lives
 		text.text = "Lives: " + GameManager.instance.lives.ToString();
     }
-	
+
+
+	//When the script is enabled
+	void OnEnable(){
+			//Set player to this
+		try {
+			GameManager.instance.player = gameObject;
+		} catch (System.Exception ex) {
+			
+		}
+			
+
+	}
+
 	// Update is called once per frame
 	void Update () {
        
-
+		//If LEFT or A is pressed
         if (Input.GetKey(KeyCode.LeftArrow)|| Input.GetKey(KeyCode.A))
             {
+			
+			//Roatate
                 transform.Rotate(0, 0, GameManager.instance.player_RotateSpeed * Time.deltaTime);
             }
+
+		//If RIGHT or D is pressed
             if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
             {
+
+			//Rotate
                 transform.Rotate(0, 0, -GameManager.instance.player_RotateSpeed * Time.deltaTime);
             }
+
+		//If UP or W is pressed
             if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
             {
-                transform.Translate(0, GameManager.instance.player_MoveSpeed * Time.deltaTime, 0);
+			
+				//transform
+				transform.Translate (0, GameManager.instance.player_MoveSpeed * Time.deltaTime, 0);
+			
             }
 
-            //If down arrow is pressed
+            //If DOWN or S is pressed
             if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
             {
-                //Translate
-                //Jesus Christ Jesus Christ Jesus Christ
-				
-			transform.rotation = Quaternion.FromToRotation (Vector3.up, Vector3.down);
-            }
+			
+			//Translate
+			transform.Translate (0, GameManager.instance.player_MoveSpeed * Time.deltaTime, 0);
+
+			}
+			
             
 
-            //Jesus Christ, Jesus Christ, Jesus Christ
-
-
+		//Check if MouseButton is Down
         if (Input.GetMouseButton(0))
         {
+			//If can fire is true
             if (canFire)
             {
+				//Start Coroutine
                 StartCoroutine(Laser());
             }
         }
 
 
             //If space is pressed down
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
+		if (Input.GetKeyDown (KeyCode.Space)) {
 
-                //Instantiate a laser
-			var laserInstance = Instantiate(GameManager.instance.player, center.transform.position, transform.rotation);
+			//Instantiate a laser
+			var laserInstance = Instantiate (GameManager.instance.laser, transform.position, transform.rotation);
 
-                //get rigidbody
-                rb = laserInstance.GetComponent<Rigidbody2D>();
+			//get rigidbody
+			rb = laserInstance.GetComponent<Rigidbody2D> ();
 
-                //Set rigidbody's velocity to go in direction the player is facing
-                rb.velocity = transform.up * GameManager.instance.laserSpeed;
+			//Set rigidbody's velocity to go in direction the player is facing
+			rb.velocity = transform.up * GameManager.instance.laserSpeed;
 
-            }
-        
-   
+		}
     }
 
+	//When script is disabled
+	void OnDisable(){
+
+		//Set can fire to true
+		canFire = true;
+
+		//Set text to lives
+		text.text = "Lives: " + GameManager.instance.lives.ToString ();
+	}
+
+	//Used for rate of fire
     IEnumerator Laser()
     {
+
+		//Set canFire to true
         canFire = false;
+
+		//Wait 
         yield return new WaitForSeconds(fireRate);
+
+		//get mouseposition in Vector3
         Vector3 mousePositionVector3 = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1);
+
+		//convert it to World space
         mousePositionVector3 = Camera.main.ScreenToWorldPoint(mousePositionVector3);
+
+		//get direction for laser
         Vector3 targetdir = mousePositionVector3 - transform.position;
+
+		//Instantiate the laser
 		GameObject newLaser = Instantiate(GameManager.instance.laser, transform.position, transform.rotation) as GameObject;
+
+		//Get the rigid body
         Rigidbody2D rigid = newLaser.GetComponent<Rigidbody2D>();
+
+		//look towards the targer direction
         newLaser.transform.rotation = Quaternion.LookRotation(Vector3.forward, targetdir);
+
+		//Set velocty to forward
         rigid.velocity = newLaser.transform.up * GameManager.instance.laserSpeed;
+
+		//You are now able to fire again
         canFire = true;
     }
 
+	 //On collision with enemies
      void OnCollisionEnter2D(Collision2D collision)
     {
 
-
+		//Subtract lives
         GameManager.instance.lives--;
+
+		//Game Over
         if (GameManager.instance.lives == 0)
         {
+			//Quit
             Application.Quit();
         }
+
+		//Set text to lives
 		text.text = "Lives: " + GameManager.instance.lives.ToString();
+
+		//Instantiate explosion
         Instantiate(GameManager.instance.explosion,transform.position,Quaternion.identity);
+
+			//Delete every enemy
             foreach (GameObject enemy in GameManager.instance.enemyList)
             {
-            Destroy(enemy);
+           		Destroy(enemy);
 
-            if (enemy == null)
-            {
-				//Jesus
+            	if (enemy == null)
+            	{
+				
 				GameManager.instance.enemyList.Remove(enemy);
-            }
+            	}
                 
             }
         }

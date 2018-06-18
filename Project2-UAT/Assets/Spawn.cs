@@ -8,18 +8,11 @@ public class Spawn : MonoBehaviour
     //Transform center
     public Transform center;
 
-
     //Public floats
 	public float timeA, timeB;
 
     //bool used for spawing
     public bool spawnIt = true;
-
-    // Use this for initialization
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -92,9 +85,11 @@ public class Spawn : MonoBehaviour
     }
 
 
+
     //Used to detect exit of collider
     void OnTriggerExit2D(Collider2D collision)
     {
+		
         //If the tag is a object
         if (collision.tag == "Object") 
         {
@@ -121,16 +116,33 @@ public class Spawn : MonoBehaviour
                 Application.Quit();
             }
 
+
+			//Enabled
+			GameManager.instance.warningText.SetActive (true);
+
             //Instantiate the explosion
 			Instantiate(GameManager.instance.explosion, collision.transform.position, Quaternion.identity);
 
-            //Destroy player
-            Destroy(collision.gameObject);
+			//Set to active to false then true
+			collision.gameObject.SetActive (false);
+			collision.gameObject.SetActive (true);
 
-            //instaniate new player
-			Instantiate(GameManager.instance.player, center);
         }
+			
     }
+
+	//Trigger Enter
+	void OnTriggerEnter2D(Collider2D collision){
+
+		//If the collision is the player
+		if (collision.tag == "Player") {
+			
+			//Warning Text is false
+			GameManager.instance.warningText.SetActive (false);
+
+
+		}
+	}
 
  
 }

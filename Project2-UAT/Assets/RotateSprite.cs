@@ -31,6 +31,6 @@ public class RotateSprite : MonoBehaviour {
 
         //Rotate the sprite
         transform.rotation = Quaternion.Euler(0, 0, rotation_z - 90);
-		//Jesus
+
 	}
 }
