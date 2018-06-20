@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotateSprite : Photon.MonoBehaviour {
+public class RotateSprite : MonoBehaviour {
 
 
 	// how far you want the sprite to be away from object
 	public float length_fromObject = 1f;
-    public static GameObject player;
-    public static RotateSprite rs;
+
 	void Update() {
 
 		// Get the direction between the sprite and mouse (aka the target position)
-		Vector3 objectToMouseDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - photonView.gameObject.transform.position;
+		Vector3 objectToMouseDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - GameManager.instance.player.transform.position;
 
 		// zero z axis since we are using 2d
 		objectToMouseDir.z = 0; 

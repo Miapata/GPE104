@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class PlayerMove : Photon.MonoBehaviour {
+public class PlayerMove : MonoBehaviour {
    	
 	//Variables
     Rigidbody2D rb;
@@ -11,7 +11,6 @@ public class PlayerMove : Photon.MonoBehaviour {
     public GameObject  center,directionSprite;
 	public bool canFire, isFlipped;
     public float fireRate;
-    public PhotonView player_PhotonView;
 
 	// Use this for initialization
 	void Start() {
@@ -38,83 +37,78 @@ public class PlayerMove : Photon.MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if (player_PhotonView.isMine)
-        {
-            //If LEFT or A is pressed
-            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+       
+		//If LEFT or A is pressed
+        if (Input.GetKey(KeyCode.LeftArrow)|| Input.GetKey(KeyCode.A))
             {
-
-                //Roatate
+			
+			//Roatate
                 transform.Rotate(0, 0, GameManager.instance.player_RotateSpeed * Time.deltaTime);
             }
 
-            //If RIGHT or D is pressed
+		//If RIGHT or D is pressed
             if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
             {
 
-                //Rotate
+			//Rotate
                 transform.Rotate(0, 0, -GameManager.instance.player_RotateSpeed * Time.deltaTime);
             }
 
-            //If UP or W is pressed
+		//If UP or W is pressed
             if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
             {
-
-                //transform
-                transform.Translate(0, GameManager.instance.player_MoveSpeed * Time.deltaTime, 0);
-
+			
+				//transform
+				transform.Translate (0, GameManager.instance.player_MoveSpeed * Time.deltaTime, 0);
+			
             }
 
             //If DOWN or S is pressed
             if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
             {
+			
+			//Translate
+			transform.Translate (0, GameManager.instance.player_MoveSpeed * Time.deltaTime, 0);
 
-                //Translate
-                transform.Translate(0, GameManager.instance.player_MoveSpeed * Time.deltaTime, 0);
+			}
+			
+            
 
-            }
-
-
-
-            //Check if MouseButton is Down
-            if (Input.GetMouseButton(0))
+		//Check if MouseButton is Down
+        if (Input.GetMouseButton(0))
+        {
+			//If can fire is true
+            if (canFire)
             {
-                //If can fire is true
-                if (canFire)
-                {
-                    //Start Coroutine
-                    StartCoroutine(Laser());
-                }
+				//Start Coroutine
+                StartCoroutine(Laser());
             }
+        }
 
 
             //If space is pressed down
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
+		if (Input.GetKeyDown (KeyCode.Space)) {
 
-                //Instantiate a laser
-                var laserInstance = PhotonNetwork.Instantiate(GameManager.instance.laser.name, transform.position, transform.rotation,0);
+			//Instantiate a laser
+			var laserInstance = Instantiate (GameManager.instance.laser, transform.position, transform.rotation);
 
-                //get rigidbody
-                rb = laserInstance.GetComponent<Rigidbody2D>();
+			//get rigidbody
+			rb = laserInstance.GetComponent<Rigidbody2D> ();
 
-                //Set rigidbody's velocity to go in direction the player is facing
-                rb.velocity = transform.up * GameManager.instance.laserSpeed;
+			//Set rigidbody's velocity to go in direction the player is facing
+			rb.velocity = transform.up * GameManager.instance.laserSpeed;
 
-            }
-        }
+		}
     }
 
 	//When script is disabled
 	void OnDisable(){
-        if (player_PhotonView.isMine)
-        {
-            //Set can fire to true
-            canFire = true;
 
-            //Set text to lives
-            text.text = "Lives: " + GameManager.instance.lives.ToString();
-        }
+		//Set can fire to true
+		canFire = true;
+
+		//Set text to lives
+		text.text = "Lives: " + GameManager.instance.lives.ToString ();
 	}
 
 	//Used for rate of fire
@@ -137,7 +131,7 @@ public class PlayerMove : Photon.MonoBehaviour {
         Vector3 targetdir = mousePositionVector3 - transform.position;
 
 		//Instantiate the laser
-		GameObject newLaser = PhotonNetwork.Instantiate(GameManager.instance.laser.name, transform.position, transform.rotation,0) as GameObject;
+		GameObject newLaser = Instantiate(GameManager.instance.laser, transform.position, transform.rotation) as GameObject;
 
 		//Get the rigid body
         Rigidbody2D rigid = newLaser.GetComponent<Rigidbody2D>();
@@ -152,40 +146,38 @@ public class PlayerMove : Photon.MonoBehaviour {
         canFire = true;
     }
 
-    //On collision with enemies
-    void OnCollisionEnter2D(Collision2D collision)
+	 //On collision with enemies
+     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (player_PhotonView.isMine)
+
+		//Subtract lives
+        GameManager.instance.lives--;
+
+		//Game Over
+        if (GameManager.instance.lives == 0)
         {
-            //Subtract lives
-            GameManager.instance.lives--;
+			//Quit
+            Application.Quit();
+        }
 
-            //Game Over
-            if (GameManager.instance.lives == 0)
-            {
-                //Quit
-                Application.Quit();
-            }
+		//Set text to lives
+		text.text = "Lives: " + GameManager.instance.lives.ToString();
 
-            //Set text to lives
-            text.text = "Lives: " + GameManager.instance.lives.ToString();
+		//Instantiate explosion
+        Instantiate(GameManager.instance.explosion,transform.position,Quaternion.identity);
 
-            //Instantiate explosion
-            PhotonNetwork.Instantiate(GameManager.instance.explosion.name, transform.position, Quaternion.identity,0);
-
-            //Delete every enemy
+			//Delete every enemy
             foreach (GameObject enemy in GameManager.instance.enemyList)
             {
-                PhotonNetwork.Destroy(enemy);
+           		Destroy(enemy);
 
-                if (enemy == null)
-                {
-
-                    GameManager.instance.enemyList.Remove(enemy);
-                }
-
+            	if (enemy == null)
+            	{
+				
+				GameManager.instance.enemyList.Remove(enemy);
+            	}
+                
             }
         }
-    }
     
 }

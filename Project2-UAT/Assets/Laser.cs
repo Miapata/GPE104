@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Laser : Photon.MonoBehaviour {
+public class Laser : MonoBehaviour {
     //Jesus Christ
 	// Use this for initialization
 	void Start () {

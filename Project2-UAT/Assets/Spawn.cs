@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawn : Photon.MonoBehaviour
+public class Spawn : MonoBehaviour
 {
-    //Jesus Christ Jesus Christ Jesus Christ
+
     //Transform center
     public Transform center;
 
@@ -70,14 +70,14 @@ public class Spawn : Photon.MonoBehaviour
         if (Random.value < GameManager.instance.chance)
         {
             //Instantiate the ship a random spawn point
-			GameManager.instance.enemyList.Add(PhotonNetwork.Instantiate(GameManager.instance.enemyShip.name, GameManager.instance.spawns[Random.Range(0, GameManager.instance.spawns.Count)].transform.position +(Vector3) Random.insideUnitCircle * 5, Quaternion.identity,0));
+			GameManager.instance.enemyList.Add(Instantiate(GameManager.instance.enemyShip, GameManager.instance.spawns[Random.Range(0, GameManager.instance.spawns.Count)].transform.position +(Vector3) Random.insideUnitCircle * 5, Quaternion.identity));
         }
 
         //Else if
         else
         {
             //Instantiate meteor
-			GameManager.instance.enemyList.Add(PhotonNetwork.Instantiate(GameManager.instance.meteors[Random.Range(0, GameManager.instance.meteors.Length)].name, GameManager.instance.spawns[Random.Range(0, GameManager.instance.spawns.Count)].transform.position + (Vector3)Random.insideUnitCircle * 5, Quaternion.identity,0));
+			GameManager.instance.enemyList.Add(Instantiate(GameManager.instance.meteors[Random.Range(0, GameManager.instance.meteors.Length)], GameManager.instance.spawns[Random.Range(0, GameManager.instance.spawns.Count)].transform.position + (Vector3)Random.insideUnitCircle * 5, Quaternion.identity));
         }
 
         //Spawn is true
@@ -94,10 +94,10 @@ public class Spawn : Photon.MonoBehaviour
         if (collision.tag == "Object") 
         {
             //Instantiate explosion
-			PhotonNetwork.Instantiate(GameManager.instance.explosion.name, collision.transform.position, Quaternion.identity,0);
+			Instantiate(GameManager.instance.explosion, collision.transform.position, Quaternion.identity);
 
             //Destroy it
-           PhotonNetwork.Destroy(collision.gameObject);
+            Destroy(collision.gameObject);
 
         }
 
@@ -121,7 +121,7 @@ public class Spawn : Photon.MonoBehaviour
 			GameManager.instance.warningText.SetActive (true);
 
             //Instantiate the explosion
-			PhotonNetwork.Instantiate(GameManager.instance.explosion.name, collision.transform.position, Quaternion.identity,0);
+			Instantiate(GameManager.instance.explosion, collision.transform.position, Quaternion.identity);
 
 			//Set to active to false then true
 			collision.gameObject.SetActive (false);
