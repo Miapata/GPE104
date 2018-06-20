@@ -6,10 +6,6 @@ public class EnemyShip : MonoBehaviour {
     //Rigidbody
     public Rigidbody2D rb;
 
-    //Player
-    public GameObject player;
-
-  
 	// Use this for initialization
 	void Start () {
 
@@ -19,27 +15,26 @@ public class EnemyShip : MonoBehaviour {
         rb = GetComponent < Rigidbody2D > ();
 
         //Find the player
-        player = GameObject.FindGameObjectWithTag("Player");
+
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
+		if (GameManager.instance.player) {
+			//Get a vector direction
+			Vector2 point2Target = (Vector2)transform.position - (Vector2)GameManager.instance.player.transform.position;
 
-        //Get a vector direction
-        Vector2 point2Target = (Vector2)transform.position - (Vector2)player.transform.position;
+			//Normalize the target
+			point2Target.Normalize ();
 
-        //Normalize the target
-        point2Target.Normalize();
+			//Find the cross product
+			float value = Vector3.Cross (point2Target, transform.up).z;
 
-        //Find the cross product
-        float value = Vector3.Cross(point2Target, transform.up).z;
-
-        //If value is 0
-        if (value > 0)
-        {
-            //set angular velocity
-            rb.angularVelocity = GameManager.instance.enemy_RotateSpeed;
-        }
+			//If value is 0
+			if (value > 0) {
+				//set angular velocity
+				rb.angularVelocity = GameManager.instance.enemy_RotateSpeed;
+			}
 
         //Else if value is less than 0
         else if (value < 0)
@@ -48,18 +43,21 @@ public class EnemyShip : MonoBehaviour {
             rb.angularVelocity = -GameManager.instance.enemy_RotateSpeed;
         //Else
 
-        else
+			else
             //Angular velocity is 0
 
             rb.angularVelocity = 0;
 
-        //Set velocity to rotating speed and value
-        rb.angularVelocity = GameManager.instance.enemy_RotateSpeed * value;
+			//Set velocity to rotating speed and value
+			rb.angularVelocity = GameManager.instance.enemy_RotateSpeed * value;
 
-        //Velocity is transform up times the forceSpeed
-        rb.velocity = transform.up * GameManager.instance.enemy_Speed;
+			//Velocity is transform up times the forceSpeed
+			rb.velocity = transform.up * GameManager.instance.enemy_Speed;
 
 
-
-    }
+		
+    } else {
+			
+		}
+}
 }

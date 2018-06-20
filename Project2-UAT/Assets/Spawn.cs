@@ -2,34 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawn : MonoBehaviour
+public class Spawn : Photon.MonoBehaviour
 {
-
-    public GameManager gameManager;
-
+    //Jesus Christ Jesus Christ Jesus Christ
     //Transform center
     public Transform center;
-    
-    //Public gameobjects
-    public GameObject meteor, enemyShip, explosion,player;
-
 
     //Public floats
-    public float timeA, timeB, chance;
+	public float timeA, timeB;
 
     //bool used for spawing
     public bool spawnIt = true;
-
-
-
-    //The player script
-    public PlayerMove playerScript;
-
-    // Use this for initialization
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -87,14 +70,14 @@ public class Spawn : MonoBehaviour
         if (Random.value < GameManager.instance.chance)
         {
             //Instantiate the ship a random spawn point
-			GameManager.instance.enemyList.Add(Instantiate(enemyShip, GameManager.instance.spawns[Random.Range(0, GameManager.instance.spawns.Count)].transform.position +(Vector3) Random.insideUnitCircle * 5, Quaternion.identity));
+			GameManager.instance.enemyList.Add(PhotonNetwork.Instantiate(GameManager.instance.enemyShip.name, GameManager.instance.spawns[Random.Range(0, GameManager.instance.spawns.Count)].transform.position +(Vector3) Random.insideUnitCircle * 5, Quaternion.identity,0));
         }
 
         //Else if
         else
         {
             //Instantiate meteor
-			GameManager.instance.enemyList.Add(Instantiate(GameManager.instance.meteors[Random.Range(0, GameManager.instance.meteors.Length)], GameManager.instance.spawns[Random.Range(0, GameManager.instance.spawns.Count)].transform.position + (Vector3)Random.insideUnitCircle * 5, Quaternion.identity));
+			GameManager.instance.enemyList.Add(PhotonNetwork.Instantiate(GameManager.instance.meteors[Random.Range(0, GameManager.instance.meteors.Length)].name, GameManager.instance.spawns[Random.Range(0, GameManager.instance.spawns.Count)].transform.position + (Vector3)Random.insideUnitCircle * 5, Quaternion.identity,0));
         }
 
         //Spawn is true
@@ -102,17 +85,19 @@ public class Spawn : MonoBehaviour
     }
 
 
+
     //Used to detect exit of collider
     void OnTriggerExit2D(Collider2D collision)
     {
+		
         //If the tag is a object
         if (collision.tag == "Object") 
         {
             //Instantiate explosion
-            Instantiate(explosion, collision.transform.position, Quaternion.identity);
+			PhotonNetwork.Instantiate(GameManager.instance.explosion.name, collision.transform.position, Quaternion.identity,0);
 
             //Destroy it
-            Destroy(collision.gameObject);
+           PhotonNetwork.Destroy(collision.gameObject);
 
         }
 
@@ -131,16 +116,33 @@ public class Spawn : MonoBehaviour
                 Application.Quit();
             }
 
+
+			//Enabled
+			GameManager.instance.warningText.SetActive (true);
+
             //Instantiate the explosion
-            Instantiate(explosion, collision.transform.position, Quaternion.identity);
+			PhotonNetwork.Instantiate(GameManager.instance.explosion.name, collision.transform.position, Quaternion.identity,0);
 
-            //Destroy player
-            Destroy(collision.gameObject);
+			//Set to active to false then true
+			collision.gameObject.SetActive (false);
+			collision.gameObject.SetActive (true);
 
-            //instaniate new player
-            Instantiate(player, center);
         }
+			
     }
+
+	//Trigger Enter
+	void OnTriggerEnter2D(Collider2D collision){
+
+		//If the collision is the player
+		if (collision.tag == "Player") {
+			
+			//Warning Text is false
+			GameManager.instance.warningText.SetActive (false);
+
+
+		}
+	}
 
  
 }

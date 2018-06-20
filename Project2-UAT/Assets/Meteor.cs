@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Meteor : MonoBehaviour {
-    //Player
-    public GameObject player;
+
     
     //Rigidbody2D
     public Rigidbody2D rb;
@@ -12,8 +11,7 @@ public class Meteor : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        //Use tag to find player
-        player = GameObject.FindGameObjectWithTag("Player");
+        
 
         //find rigidbody
         rb = GetComponent<Rigidbody2D>();
@@ -22,7 +20,7 @@ public class Meteor : MonoBehaviour {
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 
         //Get direction
-        Vector2 direction = (player.transform.position - transform.position);//W
+		Vector2 direction = (GameManager.instance.player.transform.position - transform.position);//W
         
         //normalize it
         var vel = direction.normalized;
