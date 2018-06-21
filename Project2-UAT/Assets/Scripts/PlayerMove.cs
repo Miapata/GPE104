@@ -12,6 +12,19 @@ public class PlayerMove : MonoBehaviour {
 	public bool canFire, isFlipped;
     public float fireRate;
 
+
+    void OnPhotonInsantiate(PhotonMessageInfo info)
+    {
+        //When we instantatie our object
+
+      
+            GameManager.instance.player = this.gameObject;
+        print("Hello");
+        print("Hello");
+        print("Hello");
+        print("Hello");
+    }
+
 	// Use this for initialization
 	void Start() {
 

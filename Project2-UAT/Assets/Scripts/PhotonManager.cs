@@ -34,20 +34,12 @@ public class PhotonManager : MonoBehaviour {
     }
     void OnJoinedLobby()
     {
-        rooms = PhotonNetwork.GetRoomList();
-        if (rooms.Length < 1)
-        {
-            PhotonNetwork.CreateRoom("Room", new RoomOptions() { MaxPlayers = 4 }, null);
-        }
-
-        else
-        {
-            PhotonNetwork.JoinRoom("Room");
-        }
+   
         
         
     }
 
+  
 
   
        
