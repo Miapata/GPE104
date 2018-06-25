@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 212305076093017208}
   - component: {fileID: 50937735537464634}
   - component: {fileID: 70563665295386684}
-  - component: {fileID: 114597441925762760}
   - component: {fileID: 82607485440842132}
+  - component: {fileID: 114418788647095988}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Untagged
@@ -88,7 +88,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 861734d0fa84d45409ece2723bbaa9cc, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a7f6e238c217e7f49a9aa6a4031ddc83, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.659
   m_Pitch: 1
@@ -174,7 +174,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &114597441925762760
+--- !u!114 &114418788647095988
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1963188821814914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75c6d897c86e91c4d815400da325ee87, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d1eab0f0379d824ea66aa77a87bffb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212305076093017208
@@ -220,7 +220,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ed0e12fa2af3e5b4a98bf40cd784c08e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 78465f85540bd4f40927d618e6d0765a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

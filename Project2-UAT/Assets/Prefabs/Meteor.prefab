@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 212858132054753238}
   - component: {fileID: 50446942744092032}
   - component: {fileID: 60754748334389272}
-  - component: {fileID: 114378163909820494}
   - component: {fileID: 82513742134611508}
+  - component: {fileID: 114114076077765478}
   m_Layer: 9
   m_Name: Meteor
   m_TagString: Object
@@ -104,7 +104,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a4a89807e3d058d4c8e1b5bb68ab7332, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8c4fd34d146eda1459a321edea238469, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -190,7 +190,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &114378163909820494
+--- !u!114 &114114076077765478
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1088230430566964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e983e34339d4b37478be1caa16355f66, type: 3}
+  m_Script: {fileID: 11500000, guid: 85b1623dd9a4bfa4188327ee9a362edf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
@@ -237,7 +237,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b172d940e20d37c4c98a3fb2053ed5a5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 17a608775952b384389322ba1e1cdd94, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
