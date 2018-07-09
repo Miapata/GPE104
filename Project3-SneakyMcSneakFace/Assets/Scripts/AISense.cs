@@ -59,4 +59,22 @@ public class AISense : MonoBehaviour
 		// otherwise, if we hit something else we failed to see them
 		return false;
 	}
+
+    public bool CanHear(GameObject player,int volume)
+    {
+        Vector2 dist = player.transform.position - transform.position;
+
+        float magnitude = dist.magnitude;
+        Debug.Log(magnitude);
+        if (magnitude < volume)
+        {
+            Debug.Log("Player Heard");
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
 }

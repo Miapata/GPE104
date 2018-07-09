@@ -33,7 +33,7 @@ public class Soldier : Controller
 	// Update is called once per frame
 	void Update()
 	{
-
+        
         //Do the state Machine
         StateMachine(spotted, text, sense);
 

@@ -24,7 +24,9 @@ public abstract class Controller : MonoBehaviour {
 
     //Used to store times spotted
     int timesSpotted;
-  
+
+    //Used for spotting the character
+    public bool isSpotted;
 
     //Virtual method for moving our player
     public virtual void MovePlayer(float speed, float rotationSpeed)
@@ -83,11 +85,12 @@ public abstract class Controller : MonoBehaviour {
     //Patrol method for rotating
     void Patrol(Text text, AISense sense)
     {
+        isSpotted = false;
         // Do Patrol
         transform.Rotate(0, 0, -Time.deltaTime * rotationSpeed);
 
         // Check for Transitions
-        if (sense.CanSee(GameManager.instance.player))
+        if (sense.CanSee(GameManager.instance.player)||sense.CanHear(GameManager.instance.player,3))
         {
             //Since spotted, increase the counter
             text.text = "Times Spotted: " + ++timesSpotted;
@@ -97,10 +100,12 @@ public abstract class Controller : MonoBehaviour {
         }
     }
 
+    //Abstract classes are never used by the parent, only the child
 
     //Chase the player
     void ChaseAndFire(AISense sense)
     {
+        isSpotted = true;
 
         //This is used to get a direction from the player and our current position
         Vector2 dir = GameManager.instance.player.transform.position - transform.position;

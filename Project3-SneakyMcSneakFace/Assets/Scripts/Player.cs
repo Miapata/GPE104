@@ -5,9 +5,13 @@ using UnityEngine;
 //Derives from Controller
 public class Player : Controller {
 
-	
-	// Update is called once per frame
-	void Update () {
+    public NoiseMaker noiseMaker;
+    // Update is called once per frame
+    private void Start()
+    {
+        noiseMaker.volume = 10;
+    }
+    void Update () {
 
         //Move the player, passing in the speed, and rotate speed
         MovePlayer(8, 200);

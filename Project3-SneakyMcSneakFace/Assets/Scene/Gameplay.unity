@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -205,6 +205,7 @@ MonoBehaviour:
   currentState: 0
   speed: 2
   rotationSpeed: 30
+  isSpotted: 0
   spotted: {fileID: 708009501}
   canvas: {fileID: 1492898484}
   text: {fileID: 364067626}
@@ -847,6 +848,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1688915173}
   - component: {fileID: 1688915174}
+  - component: {fileID: 1688915175}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -879,6 +881,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1763741180}
+--- !u!114 &1688915175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1688915172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ef596b8a74af504482c61ad73397d0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: 0
 --- !u!1 &1763741180
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,8 +981,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c307d2683277f41a0d44426a42190d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   speed: 10
   rotationSpeed: 180
+  isSpotted: 0
+  noiseMaker: {fileID: 1688915175}
 --- !u!58 &1763741184
 CircleCollider2D:
   m_ObjectHideFlags: 0
