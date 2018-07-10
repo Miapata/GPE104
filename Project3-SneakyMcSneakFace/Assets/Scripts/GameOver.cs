@@ -12,10 +12,11 @@ public class GameOver : MonoBehaviour {
     {
         GameManager.instance.gameOverCanvas = gameObject;
         DontDestroyOnLoad(this.gameObject);
+
     }
     void OnEnable()
     {
-           
+        gameObjects[1] = GameObject.FindGameObjectWithTag("Destroy");   
             Debug.Log("Game Over");
             foreach (GameObject item in gameObjects)
             {

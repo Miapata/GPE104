@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour {
 
 	public GameObject player;
     public NoiseMaker noiseMaker;
-    public GameState gameState;
+    
     public GameObject gameOverCanvas;
 	private void Awake()
 	{

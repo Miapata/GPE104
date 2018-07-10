@@ -10,6 +10,8 @@ public class Player : Controller {
     // Update is called once per frame
     private void Start()
     {
+        GameManager.instance.player = this.gameObject;
+
         //Set the noiseMaker
         GameManager.instance.noiseMaker = this.noiseMaker;
 

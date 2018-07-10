@@ -48,7 +48,7 @@ public class Soldier : Controller
     {
         if (collision.gameObject.tag == "Player")
         {
-            GameManager.instance.gameState.currentGameState = GameState.GameStates.GameOver;
+            GameStateManager.instance.states = GameStateManager.States.GameOver;
         }
     }
 }
