@@ -6,7 +6,9 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance;
 
 	public GameObject player;
-
+    public NoiseMaker noiseMaker;
+    public GameState gameState;
+    public GameObject gameOverCanvas;
 	private void Awake()
 	{
 		// Setup the singleton

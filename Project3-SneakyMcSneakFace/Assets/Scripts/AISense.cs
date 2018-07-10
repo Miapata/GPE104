@@ -60,19 +60,28 @@ public class AISense : MonoBehaviour
 		return false;
 	}
 
+    //Check if the enemy can hear our foosteps
     public bool CanHear(GameObject player,int volume)
     {
+        //Get the dist between the player and enemy
         Vector2 dist = player.transform.position - transform.position;
 
+        //get the magnitude of the vector
         float magnitude = dist.magnitude;
         Debug.Log(magnitude);
+
+        //If the magnitude is less than than the volume
         if (magnitude < volume)
         {
             Debug.Log("Player Heard");
+
+            //Return true
             return true;
         }
         else
         {
+
+            //Return false
             return false;
         }
         

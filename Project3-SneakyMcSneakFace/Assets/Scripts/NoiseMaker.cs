@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class NoiseMaker : MonoBehaviour {
 
+    //Int for volume
     public int volume;
 }

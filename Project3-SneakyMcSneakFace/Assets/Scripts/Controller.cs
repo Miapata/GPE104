@@ -28,6 +28,9 @@ public abstract class Controller : MonoBehaviour {
     //Used for spotting the character
     public bool isSpotted;
 
+    //Audio source 
+    public AudioSource footstep;
+
     //Virtual method for moving our player
     public virtual void MovePlayer(float speed, float rotationSpeed)
     {
@@ -54,6 +57,25 @@ public abstract class Controller : MonoBehaviour {
         {
             transform.Rotate(0, 0, -Time.deltaTime * rotationSpeed);
         }
+
+        //If anykey is pressed
+        if (Input.anyKey)
+        {
+            //Check if the audiosource is playing
+            if (!footstep.isPlaying)
+            {
+
+                //Play the footsped sound
+                footstep.Play();
+            }
+        }
+        else
+        {
+
+            //Stop the footstep sound
+            footstep.Stop();
+        }
+        
     }
 
 
@@ -90,7 +112,7 @@ public abstract class Controller : MonoBehaviour {
         transform.Rotate(0, 0, -Time.deltaTime * rotationSpeed);
 
         // Check for Transitions
-        if (sense.CanSee(GameManager.instance.player)||sense.CanHear(GameManager.instance.player,3))
+        if (sense.CanSee(GameManager.instance.player)||sense.CanHear(GameManager.instance.player,GameManager.instance.noiseMaker.volume))
         {
             //Since spotted, increase the counter
             text.text = "Times Spotted: " + ++timesSpotted;

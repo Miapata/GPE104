@@ -12,6 +12,8 @@ public class Soldier : Controller
     //Canvas
     public GameObject canvas;
 
+    public GameObject gameOverCanvas;
+
     //Text for the times Spotted
     public Text text;
 
@@ -42,5 +44,11 @@ public class Soldier : Controller
 
 	}
 
-	
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            GameManager.instance.gameState.currentGameState = GameState.GameStates.GameOver;
+        }
+    }
 }
