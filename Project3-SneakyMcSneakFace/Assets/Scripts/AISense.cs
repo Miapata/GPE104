@@ -64,7 +64,7 @@ public class AISense : MonoBehaviour
     public bool CanHear(GameObject player,int volume)
     {
         //Get the dist between the player and enemy
-        Vecto3 dist = Vector3.Distance(player.transform.position, transform.position);
+        Vector3 dist = Vector3.Distance(player.transform.position, transform.position);
 
         //get the magnitude of the vector
         float magnitude = dist.magnitude;
