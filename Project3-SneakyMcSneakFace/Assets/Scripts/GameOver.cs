@@ -14,8 +14,13 @@ public class GameOver : MonoBehaviour {
         DontDestroyOnLoad(this.gameObject);
 
     }
+
+
+	//When the script is enabled
     void OnEnable()
     {
+
+		//Destroy index 1
         gameObjects[1] = GameObject.FindGameObjectWithTag("Destroy");   
             Debug.Log("Game Over");
             foreach (GameObject item in gameObjects)

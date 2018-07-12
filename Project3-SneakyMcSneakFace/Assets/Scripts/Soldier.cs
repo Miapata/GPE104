@@ -44,6 +44,7 @@ public class Soldier : Controller
 
 	}
 
+	//This is the state for the collision 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")

@@ -64,14 +64,14 @@ public class AISense : MonoBehaviour
     public bool CanHear(GameObject player,int volume)
     {
         //Get the dist between the player and enemy
-        Vector3 dist = Vector3.Distance(player.transform.position, transform.position);
+        float dist = Vector3.Distance(player.transform.position, transform.position);
 
         //get the magnitude of the vector
-        float magnitude = dist.magnitude;
-        Debug.Log(magnitude);
+        
+        Debug.Log(dist);
 
         //If the magnitude is less than than the volume
-        if (magnitude < volume)
+        if (dist < volume)
         {
             Debug.Log("Player Heard");
 
