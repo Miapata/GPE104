@@ -6,6 +6,7 @@ public class PlayerControl : MonoBehaviour {
 	public float speed;
 	public float jumpForce;
 	public Rigidbody2D rb;
+    public Animator anim;
 	// Use this for initialization
 	void Start () {
 		
@@ -24,5 +25,27 @@ public class PlayerControl : MonoBehaviour {
 			rb.AddForce (Vector2.up * jumpForce, ForceMode2D.Impulse);
 		}
 
-	}
+        if (x != 0)
+        {
+            anim.SetBool("walking", true);
+        }
+        else
+        {
+            anim.SetBool("walking", false);
+   
+        }
+        if (x > 0)
+        {
+            anim.SetBool("walkingRight", true);
+            anim.SetBool("walkingLeft", false);
+        }
+        if (x < 0)
+        {
+            anim.SetBool("walkingLeft", true);
+            anim.SetBool("walkingRight", false);
+        }
+
+
+
+    }
 }

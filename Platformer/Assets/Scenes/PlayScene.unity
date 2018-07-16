@@ -2023,6 +2023,7 @@ GameObject:
   - component: {fileID: 1424740741}
   - component: {fileID: 1424740745}
   - component: {fileID: 1424740744}
+  - component: {fileID: 1424740746}
   m_Layer: 0
   m_Name: player-idle-4
   m_TagString: Untagged
@@ -2044,6 +2045,7 @@ MonoBehaviour:
   speed: 4
   jumpForce: 2
   rb: {fileID: 1424740745}
+  anim: {fileID: 1424740746}
 --- !u!212 &1424740742
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2137,6 +2139,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
+--- !u!95 &1424740746
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1424740740}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 55697cd50679bbe44a0d76509538fd81, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1885666729
 GameObject:
   m_ObjectHideFlags: 0
