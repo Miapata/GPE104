@@ -22,8 +22,16 @@ public class PlayerControl : MonoBehaviour {
 
 
 		if (Input.GetKeyDown (KeyCode.Space)) {
-			rb.AddForce (Vector2.up * jumpForce, ForceMode2D.Impulse);
-		}
+            if (x < 0)
+            {
+                anim.Play("Jumping Left");
+            }
+            if(x>0)
+            {
+                anim.Play("Jumping Right");
+            }
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
 
         if (x != 0)
         {
@@ -45,7 +53,7 @@ public class PlayerControl : MonoBehaviour {
             anim.SetBool("walkingRight", false);
         }
 
-
-
     }
+
+  
 }
