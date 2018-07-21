@@ -2076,7 +2076,7 @@ GameObject:
   - component: {fileID: 1424740744}
   - component: {fileID: 1424740746}
   m_Layer: 0
-  m_Name: player-idle-4
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
