@@ -5,11 +5,17 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour {
 	public float speed;
 	public float jumpForce;
+    public int jumpTimes;
+    public bool isGrounded;
+
 	public Rigidbody2D rb;
     public Animator anim;
-	// Use this for initialization
-	void Start () {
-		
+    public AudioClip jumpSound;
+    public AudioSource audioSource;
+    private int jumpCount;
+    // Use this for initialization
+    void Start () {
+	
 	}
 	
 	// Update is called once per frame
@@ -21,7 +27,12 @@ public class PlayerControl : MonoBehaviour {
 		transform.position += Vector3.right * x * Time.deltaTime*speed;
 
 
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		if (Input.GetKeyDown (KeyCode.Space)&&jumpCount<jumpTimes) {
+            jumpCount++;
+
+            
+            //play sound
+            AudioSource.PlayClipAtPoint(jumpSound, transform.position);
             if (x < 0)
             {
                 anim.Play("Jumping Left");
@@ -55,5 +66,20 @@ public class PlayerControl : MonoBehaviour {
 
     }
 
-  
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Floor")
+        {
+            isGrounded = true;
+            jumpCount = 0;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Floor")
+        {
+            isGrounded = false;
+        }
+    }
 }
