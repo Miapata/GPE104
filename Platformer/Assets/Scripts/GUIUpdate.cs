@@ -12,6 +12,12 @@ public class GUIUpdate : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         triesText.text = "Tries: " + GameManager.instance.tries.ToString();
-        timeText.text = "Time:" + time + Time.deltaTime.ToString();
+        AddTime();
+        timeText.text = string.Format("Time- {0}", time.ToString("F2"));
 	}
+
+    void AddTime()
+    {
+        time += Time.deltaTime;
+    }
 }

@@ -22,6 +22,9 @@ public class CameraFollow : MonoBehaviour {
     void LateUpdate () {
 
         //transforms the camera 
-        transform.position = Vector3.SmoothDamp(transform.position, target.transform.position, ref velocity, smoothTime);	
+        if (target.activeInHierarchy == true)
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, target.transform.position, ref velocity, smoothTime);
+        }
 	}
 }
