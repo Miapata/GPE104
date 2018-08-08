@@ -10,7 +10,11 @@ public class PhotonManager : Photon.MonoBehaviour {
 	}
 
 	void OnJoinedLobby(){
-		
+		PhotonNetwork.JoinOrCreateRoom ("Room",new RoomOptions(), TypedLobby.Default);
+	}
+
+	void OnJoinedRoom(){
+		PhotonNetwork.Instantiate ("Player",transform.position,Quaternion.identity,0);
 	}
 
 }

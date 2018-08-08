@@ -2,13 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : Photon.MonoBehaviour {
     public Animator anim;
     public float speed;
     public SpriteRenderer sr;
+	public MonoBehaviour[] scriptsToIgnore;
 	// Use this for initialization
 	void Start () {
-		
+		if (photonView.isMine) {
+
+		} else {
+			foreach (var item in scriptsToIgnore) {
+				item.enabled = false;
+			}
+		}
 	}
 	
 	// Update is called once per frame

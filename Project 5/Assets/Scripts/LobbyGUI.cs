@@ -12,7 +12,7 @@ public class LobbyGUI : Photon.MonoBehaviour {
 	void OnGUI(){
 
 		if (!playerReady) {
-			playerName = GUI.TextField (new Rect(200, 125, 300, 80));
+			
 			if (GUI.Button (new Rect (215, 70, 70, 35), "Login")) {
 				//Check if name is available
 			}
