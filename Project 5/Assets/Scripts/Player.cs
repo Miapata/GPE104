@@ -6,17 +6,7 @@ public class Player : Photon.MonoBehaviour {
     public Animator anim;
     public float speed;
     public SpriteRenderer sr;
-	public MonoBehaviour[] scriptsToIgnore;
-	// Use this for initialization
-	void Start () {
-		if (photonView.isMine) {
 
-		} else {
-			foreach (var item in scriptsToIgnore) {
-				item.enabled = false;
-			}
-		}
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -28,18 +18,19 @@ public class Player : Photon.MonoBehaviour {
         anim.SetFloat("Speed", Mathf.Abs(horizontalSpeed));
 
         //If input is the Left arrow, go ahead and tranform it to the left
-        //Wwe also want to flip the x of the sprite renderer
+        //Wwe also want to flip the x 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.position -= new Vector3(-horizontalSpeed * speed * Time.deltaTime,0,0);
-            sr.flipX = true;
+            transform.localScale = new Vector2(-9.791547f, 9.791547f);
         }
 
         //If input is the Rightarrow, go ahead and tranform it to the right
-        //Wwe also want maeks sure the flipping is the default
+        //Wwe also want make sure the flipping is the default
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            sr.flipX = false;
+            transform.localScale = new Vector2(9.791547f, 9.791547f);
+           
             transform.position += new Vector3(horizontalSpeed * speed * Time.deltaTime, 0, 0);
         }
 

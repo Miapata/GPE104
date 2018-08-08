@@ -3,35 +3,54 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class LobbyGUI : Photon.MonoBehaviour {
+    public static LobbyGUI instance;
 
 	public string roomTextField="Create Room...";
 	public string nameTextField;
+    public string nameUnav;
+    public string nameAv;
+    public static List<string> playerList;
+
+    public List<Room> roomList;
+
 	private string playerName;
 	private Vector2 scrollViewVector= Vector2.zero;
-	private bool playerReady;
-	void OnGUI(){
 
-		if (!playerReady) {
-			
-			if (GUI.Button (new Rect (215, 70, 70, 35), "Login")) {
-				//Check if name is available
-			}
-		}
-		if (playerReady) {
+    [SerializeField]
+	private bool playerReady;
+    [SerializeField]
+    private bool nameAvailable;
+
+
+    private void Start()
+    {
+        instance = this;
+    }
+
+    void OnGUI(){
+      
+		
 			if (GUI.Button (new Rect (215, 70, 70, 35), "Join")) {
-			
+            PhotonNetwork.JoinOrCreateRoom(roomTextField,new RoomOptions(),TypedLobby.Default);
 			}
+
 			if (GUI.Button (new Rect (315, 70, 70, 35), "Create")) {
-				print ("You clicked the button!");
-			}
+            PhotonNetwork.CreateRoom(roomTextField, new RoomOptions(), TypedLobby.Default);
+        }
 
 			//Text to Create Room Name
 			roomTextField = GUI.TextField (new Rect (200, 125, 200, 20), roomTextField);
 
 			//ScrolView
-			scrollViewVector = GUI.BeginScrollView (new Rect (0, 0, 200, 150), scrollViewVector, new Rect (0, 0, 400, 400));
-
-			GUI.EndScrollView ();
-		}
+			
+        foreach (RoomInfo room in PhotonNetwork.GetRoomList())
+        {
+            if (GUILayout.Button(room.Name.ToString()))
+            {
+                PhotonNetwork.JoinRoom(room.Name);
+            }
+        }
+       
+		
 	}
 }
