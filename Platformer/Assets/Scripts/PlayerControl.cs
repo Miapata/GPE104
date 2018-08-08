@@ -41,6 +41,7 @@ public class PlayerControl : MonoBehaviour {
 		//transform the player
 		transform.position += Vector3.right * x * Time.deltaTime*speed;
 
+		//Tells the player to jump if the space key is pressed
 		if (Input.GetKeyDown (KeyCode.Space)&&jumpCount<jumpTimes) {
             isJumping = true ;
             jumpCount++;
