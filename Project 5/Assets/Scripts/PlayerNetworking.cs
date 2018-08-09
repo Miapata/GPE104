@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerNetworking : MonoBehaviour {
+public class PlayerNetworking : Photon.MonoBehaviour {
 
     public MonoBehaviour[] scriptsToIgnore;
-
+    public GameObject mainCam;
     private PhotonView photonView;
     // Use this for initialization
     void Start()
@@ -17,6 +17,7 @@ public class PlayerNetworking : MonoBehaviour {
         }
         else
         {
+            mainCam.SetActive(false);
             foreach (var item in scriptsToIgnore)
             {
                 item.enabled = false;

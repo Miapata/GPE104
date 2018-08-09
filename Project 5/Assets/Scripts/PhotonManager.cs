@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PhotonManager : Photon.MonoBehaviour {
 
 	// Use this for initialization
@@ -14,7 +14,7 @@ public class PhotonManager : Photon.MonoBehaviour {
 	}
 
 	void OnJoinedRoom(){
-		
+        SceneManager.LoadSceneAsync(1);
 	}
     void OnPhotonPlayerConnected(PhotonPlayer newPlayer)
     {

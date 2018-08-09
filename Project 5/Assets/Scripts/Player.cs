@@ -5,8 +5,10 @@ using UnityEngine;
 public class Player : Photon.MonoBehaviour {
     public Animator anim;
     public float speed;
+    public float fireRate;
+    public bool canFire;
     public SpriteRenderer sr;
-
+    public List<GameObject> missiles;
 	
 	// Update is called once per frame
 	void Update () {
@@ -22,19 +24,40 @@ public class Player : Photon.MonoBehaviour {
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.position -= new Vector3(-horizontalSpeed * speed * Time.deltaTime,0,0);
-            transform.localScale = new Vector2(-9.791547f, 9.791547f);
+            transform.localScale = new Vector3(-1, 1, 0);
         }
 
         //If input is the Rightarrow, go ahead and tranform it to the right
         //Wwe also want make sure the flipping is the default
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.localScale = new Vector2(9.791547f, 9.791547f);
-           
+            transform.localScale = new Vector3(1, 1, 0);
+
             transform.position += new Vector3(horizontalSpeed * speed * Time.deltaTime, 0, 0);
+        }
+
+        //If input is Space key, go ahead and Instantiate a missle
+        if (Input.GetKey(KeyCode.Space))
+        {
+            if (missiles.Count < 3)
+            {
+                if (canFire == true)
+                {
+                    StartCoroutine("Fire", fireRate);
+                }
+            }
         }
 
         
 
+    }
+
+    IEnumerator Fire(float fireRate)
+    {
+        canFire = false;
+        yield return new WaitForSeconds(fireRate);
+        canFire = true;
+        GameObject missile=PhotonNetwork.Instantiate("Missile", transform.position + transform.up, Quaternion.identity, 0);
+        missiles.Add(missile);
     }
 }

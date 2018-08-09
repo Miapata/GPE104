@@ -48,10 +48,6 @@ public class LobbyGUI : Photon.MonoBehaviour {
 				GUILayout.BeginVertical("Box");
 				scrollViewVector = GUILayout.BeginScrollView(scrollViewVector, GUILayout.Width(600), GUILayout.Height(300));
 
-				if(GUILayout.Button("Server 1")){
-					Debug.Log("Joining Server 1");
-				}
-
 				//Draw Server buttons here!
 			foreach(RoomInfo room in PhotonNetwork.GetRoomList()){
 				Debug.Log("Game Name: " + room.Name);
