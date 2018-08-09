@@ -7,7 +7,7 @@ public class Missle : Photon.MonoBehaviour
 
 
     public float moveSpeed;
-    public float rotateSpeed;
+    public float rotatingSpeed;
     private Vector3 mousePosition;
 
     Rigidbody2D rb;
@@ -15,6 +15,7 @@ public class Missle : Photon.MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
         if (photonView.isMine)
         {
             rb = GetComponent<Rigidbody2D>();
@@ -26,33 +27,28 @@ public class Missle : Photon.MonoBehaviour
     }
 
 
-    // In this method we make the missle follow the mouse
-
-    void FixedUpdate()
+    private void Update()
     {
+        transform.position = Vector2.MoveTowards(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition),0.2f);
 
-        Vector2 point2Target = (Vector2)transform.position - (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-     
-
-        float value = Vector3.Cross(point2Target, transform.right).z;
-
-        /*
-        if (value > 0) {
-
-                rb.angularVelocity = rotatingSpeed;
-        } else if (value < 0)
-                rb.angularVelocity = -rotatingSpeed;
-        else
-                rotatingSpeed = 0;
-*/
-
-        rb.angularVelocity = rotateSpeed * value - 90;
-
-
-        rb.velocity = transform.right * moveSpeed;
-
-
-
+        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        difference.Normalize();
+        float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rotation_z-90);
     }
+
+    private void FixedUpdate()
+    {
+        rb.angularVelocity = rotatingSpeed;
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject)
+        {
+            PhotonNetwork.Destroy(gameObject);
+        }
+    }
+
 }

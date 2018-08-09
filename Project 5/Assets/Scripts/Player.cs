@@ -48,16 +48,23 @@ public class Player : Photon.MonoBehaviour {
             }
         }
 
-        
+        foreach (GameObject missile in missiles)
+        {
+            if (missile == null)
+            {
+                missiles.Remove(missile);
+            }
+        }
 
     }
 
     IEnumerator Fire(float fireRate)
     {
+  
         canFire = false;
         yield return new WaitForSeconds(fireRate);
         canFire = true;
-        GameObject missile=PhotonNetwork.Instantiate("Missile", transform.position + transform.up, Quaternion.identity, 0);
+        GameObject missile=PhotonNetwork.Instantiate("Missile", transform.position + transform.up*2, Quaternion.identity, 0);
         missiles.Add(missile);
     }
 }
