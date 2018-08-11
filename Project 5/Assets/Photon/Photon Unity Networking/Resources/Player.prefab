@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 222881232529688664}
   - component: {fileID: 114833418006589638}
   - component: {fileID: 114981978109547364}
+  - component: {fileID: 114184553660344262}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -97,6 +98,7 @@ GameObject:
   - component: {fileID: 114343216993133980}
   - component: {fileID: 50748220986801654}
   - component: {fileID: 70905444964958200}
+  - component: {fileID: 114050182717958272}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -126,7 +128,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1103919126313390}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0.28, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4969636260893348}
@@ -166,7 +168,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -195,8 +197,8 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -242,6 +244,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114050182717958272
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1767644187957110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 114343216993133980}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &114065492957916142
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -286,6 +314,32 @@ MonoBehaviour:
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &114184553660344262
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087561954599236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 114981978109547364}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &114315248020949504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -301,8 +355,14 @@ MonoBehaviour:
   speed: 7
   fireRate: 0.2
   canFire: 1
+  maxMissiles: 3
   sr: {fileID: 212212404921759824}
   missiles: []
+  photonViews: []
+  timesCanJump: 2
+  rigidBod2D: {fileID: 50748220986801654}
+  jumpForce: 15
+  isGrounded: 1
 --- !u!114 &114343216993133980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -316,7 +376,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scriptsToIgnore:
   - {fileID: 114315248020949504}
-  - {fileID: 114981978109547364}
   mainCam: {fileID: 1103919126313390}
 --- !u!114 &114362311747238978
 MonoBehaviour:

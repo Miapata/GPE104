@@ -13,8 +13,8 @@ public class InGameGUI : Photon.MonoBehaviour {
 	void OnGUI(){
         if (inGame == false) {
            
-			PhotonNetwork.playerName = GUI.TextField (new Rect (100, 300, 200, 35),PhotonNetwork.playerName);
-			if (GUI.Button (new Rect (300, 100, 35, 80), "Login")) {
+			PhotonNetwork.playerName = GUI.TextField (new Rect (300, 80, 200, 35),PhotonNetwork.playerName);
+			if (GUI.Button (new Rect (300, 100, 200, 80), "Login")) {
                 if (PhotonNetwork.playerName != "")
                 {
                     

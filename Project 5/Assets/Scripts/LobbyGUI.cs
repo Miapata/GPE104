@@ -29,7 +29,7 @@ public class LobbyGUI : Photon.MonoBehaviour {
 
     void OnGUI(){
       
-		if(PhotonNetwork.room==null){
+		if(PhotonNetwork.connectedAndReady==true&&PhotonNetwork.room==null){
 			if (GUI.Button (new Rect (215, 70, 70, 35), "Join")) {
             PhotonNetwork.JoinOrCreateRoom(roomTextField,new RoomOptions(),TypedLobby.Default);
 			}
@@ -51,9 +51,9 @@ public class LobbyGUI : Photon.MonoBehaviour {
 				//Draw Server buttons here!
 			foreach(RoomInfo room in PhotonNetwork.GetRoomList()){
 				Debug.Log("Game Name: " + room.Name);
-				if(GUILayout.Button("Game Name: " + room.Name)){
+				if(GUILayout.Button(room.Name)){
 					InGameGUI.instance.inGame = true;
-					PhotonNetwork.JoinRoom (room.Name);
+					PhotonNetwork.JoinOrCreateRoom (room.Name,new RoomOptions(),TypedLobby.Default);
 
 					}
 				}

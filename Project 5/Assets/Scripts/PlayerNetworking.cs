@@ -13,7 +13,7 @@ public class PlayerNetworking : Photon.MonoBehaviour {
         photonView = GetComponent<PhotonView>();
         if (photonView.isMine)
         {
-            
+			
         }
         else
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Missle : Photon.MonoBehaviour
 {
 
-
+	public GameObject particleSystem;
     public float moveSpeed;
     public float rotatingSpeed;
     private Vector3 mousePosition;
@@ -47,8 +47,15 @@ public class Missle : Photon.MonoBehaviour
     {
         if (collider.gameObject)
         {
+			
+			photonView.RPC ("DetachParticleSystem", PhotonTargets.AllViaServer);
             PhotonNetwork.Destroy(gameObject);
         }
     }
+	[PunRPC]
+	void DetachParticleSystem(){
+
+		particleSystem.transform.parent = null;
+	}
 
 }
