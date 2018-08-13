@@ -3,20 +3,18 @@ using System.Collections;
 
 public class DestroyObject : MonoBehaviour
 {
-	public float timeToWait;
+	public float timeToWait; // wait time
 
-	// Use this for initialization
-	void Update(){
+	// Called after each frame
+void LateUpdate(){
 
-		//Get rid of the object after a few seconds
-		//Only called when the missle gets destroyed
-		if (transform.parent == null) {
-			timeToWait -= Time.deltaTime;
-			if (timeToWait <= 0) {
-				PhotonNetwork.Destroy (gameObject);
-			}
-		}
+	// Checks the parent
+	if(transform.parent==null){
+
+		// Destroy gameobject after certain time
+	GameObject.Destroy(gameObject,timeToWait);
 	}
+}
 
 }
 
