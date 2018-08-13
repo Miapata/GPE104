@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Missle : Photon.MonoBehaviour
+public class Missle : MonoBehaviour
 {
 
 	public GameObject particleSystem; // the missile's trail

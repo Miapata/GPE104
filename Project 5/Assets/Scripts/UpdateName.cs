@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class UpdateName : Photon.MonoBehaviour {
+public class UpdateName : MonoBehaviour {
 	public Text text; // player name text
 	public Vector3 offset; // offset for position
 	public GameObject enemy; // player gameobject
