@@ -145,7 +145,8 @@ if(progressBar.fillAmount==1){
 
 		// We iterate through each missile to see if there are any that 
 		// have been destroyed.
-        foreach (GameObject missile in missiles)
+
+        foreach (GameObject missile in missiles.ToArray())
         {
 
 			// If the missile is null
